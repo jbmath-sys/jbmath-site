@@ -1,17 +1,12 @@
 [
   {
     "id": "cCNO_vbWUac",
-    "title": "Probabilidad Clasica",
+    "title": "Probabilidad clásica",
     "category": "Estadística"
   },
   {
     "id": "fJ9rUzIMcZQ",
     "title": "Tablas de frecuencia en 10 minutos",
-    "category": "Estadística"
-  },
-  {
-    "id": "OPf0YbXqDm0",
-    "title": "Probabilidad clásica: ejercicios rápidos",
     "category": "Estadística"
   },
   {
@@ -25,11 +20,6 @@
     "category": "Trigonometría"
   },
   {
-    "id": "6_b7RDuLwcI",
-    "title": "Ángulo de elevación y depresión (aplicaciones)",
-    "category": "Trigonometría"
-  },
-  {
     "id": "3JZ_D3ELwOQ",
     "title": "Áreas y perímetros: figuras compuestas",
     "category": "Geometría"
@@ -37,11 +27,6 @@
   {
     "id": "ktvTqknDobU",
     "title": "Teorema de Pitágoras con problemas",
-    "category": "Geometría"
-  },
-  {
-    "id": "hY7m5jjJ9mM",
-    "title": "Geometría analítica: distancia y punto medio",
     "category": "Geometría"
   },
   {
@@ -55,38 +40,13 @@
     "category": "Aritmética"
   },
   {
-    "id": "kXYiU_JCYtU",
-    "title": "Aritmética mental: trucos con potencias",
-    "category": "Aritmética"
-  },
-  {
     "id": "L_jWHffIx5E",
     "title": "Razonamiento con conteos y caminos",
     "category": "Razonamiento matemático"
   },
   {
-    "id": "eVTXPUF4Oz4",
-    "title": "Tableros y combinatoria básica",
-    "category": "Razonamiento matemático"
-  },
-  {
-    "id": "uelHwf8o7_U",
-    "title": "Paradojas y falacias comunes",
-    "category": "Razonamiento matemático"
-  },
-  {
     "id": "C-u5WLJ9Yk4",
     "title": "Factor común en 30 segundos",
-    "category": "Trucos"
-  },
-  {
-    "id": "dvgZkm1xWPE",
-    "title": "Derivar en la cabeza: reglas rápidas",
-    "category": "Trucos"
-  },
-  {
-    "id": "hTWKbfoikeg",
-    "title": "Fracciones: sumas veloces",
     "category": "Trucos"
   }
 ]
