@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>JBMath • Clases y Trucos</title>
+  <meta name="description" content="Colección de videos por categorías: Estadística, Trigonometría, Geometría, Aritmética y más." />
+  <link rel="preconnect" href="https://i.ytimg.com">
+  <style>
+    :root{
+      --bg:#0b1020; --card:#121935; --muted:#9fb0ff; --accent:#58e1ff;
+      --text:#eaf0ff; --chip:#1b254d; --chipOn:#2741b3; --link:#9ce2ff;
+      --shadow:0 10px 30px rgba(4,10,40,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(1200px 600px at 80% -10%, #1c295f 0%, transparent 60%) , var(--bg);
+      color:var(--text);
+    }
+    a{color:var(--link); text-decoration:none}
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(11,16,32,.92), rgba(11,16,32,.6) 60%, transparent);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .wrap{max-width:1100px; margin:0 auto; padding: 18px 18px}
+    .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px}
+    .logo{width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:linear-gradient(135deg,#4cb3ff,#7d7cff); box-shadow:var(--shadow)}
+    .title{font-size:1.15rem}
+    .subtitle{color:var(--muted); font-weight:500; font-size:.95rem}
+    .searchbar{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .searchbar input{
+      flex:1 1 320px; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.08);
+      background:#0f1734; color:var(--text); outline: none;
+    }
+    .chips{display:flex; gap:10px; flex-wrap:wrap}
+    .chip{
+      border:1px solid rgba(255,255,255,.08);
+      background:var(--chip); color:var(--text); padding:8px 12px; border-radius:999px; cursor:pointer; font-size:.92rem;
+    }
+    .chip.active{background:var(--chipOn)}
+    main{padding:24px 18px}
+    .grid{max-width:1100px; margin:0 auto; display:grid; gap:18px; grid-template-columns: repeat(1, minmax(0,1fr));}
+    @media (min-width:640px){ .grid{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+    @media (min-width:980px){ .grid{ grid-template-columns: repeat(3, minmax(0,1fr)); } }
+    .card{
+      background:linear-gradient(180deg, #111a3a, #0f1734);
+      border:1px solid rgba(255,255,255,.06);
+      border-radius: var(--radius);
+      overflow:hidden; box-shadow: var(--shadow);
+      display:flex; flex-direction:column;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .card:hover{ transform: translateY(-3px); box-shadow:0 18px 40px rgba(5,12,50,.45); }
+    .thumb{aspect-ratio:16/9; background:#0a1230; position:relative}
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+    .badge{position:absolute; top:10px; left:10px; background:rgba(0,0,0,.55); padding:6px 10px; border-radius:999px; font-size:.8rem}
+    .content{padding:14px 14px 16px}
+    .titlecard{font-weight:700; line-height:1.15}
+    .metacard{color:var(--muted); font-size:.9rem; margin-top:6px}
+    .actions{display:flex; gap:10px; margin-top:12px}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; padding:9px 12px; font-weight:600; border-radius:12px;
+      background:#0e224a; border:1px solid rgba(255,255,255,.08); color:var(--text); cursor:pointer;
+    }
+    .btn.secondary{ background:transparent }
+    .footer{max-width:1100px; margin:40px auto 60px; color:var(--muted); text-align:center; font-size:.92rem}
+    /* Modal */
+    .modal{ position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(6,10,28,.75); z-index:100 }
+    .modal.open{display:flex}
+    .modal-inner{ width:min(960px, 92vw); background:#0b1020; border:1px solid rgba(255,255,255,.06); border-radius:16px; overflow:hidden; box-shadow: var(--shadow) }
+    .modal-head{ display:flex; justify-content:space-between; align-items:center; padding:10px 14px; border-bottom:1px solid rgba(255,255,255,.06) }
+    .modal-body{ aspect-ratio:16/9; background:#000 }
+    .close{cursor:pointer; padding:6px 10px; border-radius:10px; background:#17224d; border:1px solid rgba(255,255,255,.08)}
+    .pill{font-size:.78rem; padding:4px 8px; border-radius:999px; background:#1a2b63; margin-left:8px; color:#cfe1ff}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">📐</div>
+        <div>
+          <div class="title">JBMath • Videos por categoría</div>
+          <div class="subtitle">Aprende más rápido que una integral impropia convergiendo 😎</div>
+        </div>
+      </div>
+      <div class="searchbar">
+        <input id="q" placeholder="Buscar videos (título o tema)..." autocomplete="off" />
+        <div class="chips" id="chips"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <div class="footer">
+    Hecho con ❤️ y una pizca de trigonometría. Publica esto en <strong>GitHub Pages</strong> y comparte tu conocimiento.
+  </div>
+
+  <!-- Modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Reproductor de video">
+    <div class="modal-inner">
+      <div class="modal-head">
+        <div id="modalTitle"></div>
+        <button class="close" id="closeBtn">Cerrar ✖</button>
+      </div>
+      <div class="modal-body" id="playerWrap"></div>
+    </div>
+  </div>
+
+  <script>
+    // 1) Configura tus categorías aquí
+    const CATEGORIES = ["Estadística","Trigonometría","Geometría","Aritmética","Razonamiento matemático","Trucos"];
+
+    // 2) Agrega tus videos aquí. Solo reemplaza el id por el ID de YouTube y ajusta título y categoría.
+    //    ID = lo que va después de v= en la URL. Ej: https://www.youtube.com/watch?v=dQw4w9WgXcQ -> id = dQw4w9WgXcQ
+    const VIDEOS = [
+      { id:"dQw4w9WgXcQ", title:"Media, mediana y moda sin dolor", category:"Estadística" },
+      { id:"9bZkp7q19f0", title:"Razones trigonométricas en triángulo rectángulo", category:"Trigonometría" },
+      { id:"3JZ_D3ELwOQ", title:"Áreas y perímetros: figuras compuestas", category:"Geometría" },
+      { id:"tVj0ZTS4WF4", title:"Divisibilidad rápida con trucos mentales", category:"Aritmética" },
+      { id:"L_jWHffIx5E", title:"Problemas de conteo y pensamiento lógico", category:"Razonamiento matemático" },
+      { id:"kXYiU_JCYtU", title:"Truco exprés: factor común en 30s", category:"Trucos" },
+    ];
+
+    // 3) Render dinámico
+    const grid = document.getElementById('grid');
+    const chips = document.getElementById('chips');
+    const q = document.getElementById('q');
+
+    let state = { q:'', cat:'Todas' };
+    const ALL = 'Todas';
+    const cats = [ALL, ...CATEGORIES];
+
+    function ytThumb(id){ return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; }
+    function ytEmbed(id){ return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`; }
+
+    function renderChips(){
+      chips.innerHTML = '';
+      cats.forEach(c=>{
+        const el = document.createElement('button');
+        el.className = 'chip' + (state.cat===c ? ' active':'');
+        el.textContent = c;
+        el.onclick = ()=>{ state.cat=c; render(); };
+        chips.appendChild(el);
+      });
+    }
+
+    function cardTemplate(v){
+      return `
+      <article class="card" data-cat="${v.category}" data-title="${v.title.toLowerCase()}">
+        <div class="thumb">
+          <img loading="lazy" src="${ytThumb(v.id)}" alt="Miniatura de ${v.title}" />
+          <div class="badge">${v.category}</div>
+        </div>
+        <div class="content">
+          <div class="titlecard">${v.title}</div>
+          <div class="metacard">YouTube<span class="pill">HD</span></div>
+          <div class="actions">
+            <button class="btn" data-play="${v.id}" data-title="${v.title}">▶ Reproducir</button>
+            <a class="btn secondary" target="_blank" href="https://www.youtube.com/watch?v=${v.id}" rel="noopener">Ver en YouTube</a>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function render(){
+      renderChips();
+      const term = state.q.trim().toLowerCase();
+      const list = VIDEOS.filter(v=> (state.cat===ALL || v.category===state.cat) &&
+                                     (term==='' || v.title.toLowerCase().includes(term)));
+      grid.innerHTML = list.map(cardTemplate).join('');
+    }
+
+    q.addEventListener('input', (e)=>{ state.q = e.target.value; render(); });
+
+    // Modal logic
+    const modal = document.getElementById('modal');
+    const playerWrap = document.getElementById('playerWrap');
+    const modalTitle = document.getElementById('modalTitle');
+    const closeBtn = document.getElementById('closeBtn');
+    function openModal(title, id){
+      modal.classList.add('open');
+      modalTitle.textContent = title;
+      playerWrap.innerHTML = `<iframe width="100%" height="100%" src="${ytEmbed(id)}" title="${title}" frameborder="0"
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+           allowfullscreen></iframe>`;
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      playerWrap.innerHTML = '';
+    }
+    closeBtn.onclick = closeModal;
+    modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
+
+    // Delegated play button
+    grid.addEventListener('click', (e)=>{
+      const btn = e.target.closest('[data-play]');
+      if(!btn) return;
+      openModal(btn.dataset.title, btn.dataset.play);
+    });
+
+    // First paint
+    render();
+  </script>
+</body>
+</html>
