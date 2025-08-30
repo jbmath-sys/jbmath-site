@@ -42,38 +42,27 @@
             margin: 10px 0;
             font-size: 20px;
         }
-        .modal {
+        .videos {
             display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            margin-top: 20px;
         }
-        .modal-content {
-            margin: 15% auto;
-            background-color: white;
-            padding: 20px;
-            width: 80%;
-            border-radius: 10px;
+        .video {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
         }
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
+        .video img {
+            width: 100px;
+            height: 56px;
+            border-radius: 8px;
         }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
+        .video h4 {
+            margin: 0;
+            font-size: 16px;
         }
-        iframe {
-            width: 100%;
-            height: 315px;
+        .video p {
+            font-size: 12px;
+            color: #555;
         }
     </style>
 </head>
@@ -85,42 +74,76 @@
     </header>
 
     <div class="container">
-        <div class="category" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">
+        <div class="category" onclick="toggleVideos('estadistica')">
             <h3>Estadística</h3>
-            <p>Videos sobre conceptos estadísticos básicos y avanzados.</p>
+            <p>Conceptos básicos y avanzados de estadística.</p>
         </div>
-        <div class="category" onclick="openModal('https://www.youtube.com/embed/C0DPdy98e4c')">
+        <div class="category" onclick="toggleVideos('trigonometria')">
             <h3>Trigonometría</h3>
-            <p>Explicaciones sobre las funciones trigonométricas.</p>
+            <p>Aprende sobre las funciones trigonométricas.</p>
         </div>
-        <div class="category" onclick="openModal('https://www.youtube.com/embed/Zh2AKml8DgM')">
+        <div class="category" onclick="toggleVideos('geometria')">
             <h3>Geometría</h3>
-            <p>Aprende sobre figuras, ángulos y áreas.</p>
+            <p>Estudia figuras geométricas y áreas.</p>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div id="videoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <iframe id="videoFrame" src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- Videos de Estadística -->
+    <div id="estadistica" class="videos">
+        <div class="video">
+            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Video 1">
+            <div>
+                <h4>Estadística Básica</h4>
+                <p>Introducción a la estadística con ejemplos prácticos.</p>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank">Ver Video</a>
+            </div>
+        </div>
+        <div class="video">
+            <img src="https://img.youtube.com/vi/C0DPdy98e4c/hqdefault.jpg" alt="Video 2">
+            <div>
+                <h4>Estadística Avanzada</h4>
+                <p>Conceptos avanzados de estadística para análisis de datos.</p>
+                <a href="https://www.youtube.com/watch?v=C0DPdy98e4c" target="_blank">Ver Video</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Videos de Trigonometría -->
+    <div id="trigonometria" class="videos">
+        <div class="video">
+            <img src="https://img.youtube.com/vi/Zh2AKml8DgM/hqdefault.jpg" alt="Video 3">
+            <div>
+                <h4>Funciones Trigonométricas</h4>
+                <p>Conceptos fundamentales de seno, coseno y tangente.</p>
+                <a href="https://www.youtube.com/watch?v=Zh2AKml8DgM" target="_blank">Ver Video</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Videos de Geometría -->
+    <div id="geometria" class="videos">
+        <div class="video">
+            <img src="https://img.youtube.com/vi/WGvS5uXuVi0/hqdefault.jpg" alt="Video 4">
+            <div>
+                <h4>Áreas de Figuras</h4>
+                <p>Aprende a calcular el área de diferentes figuras geométricas.</p>
+                <a href="https://www.youtube.com/watch?v=WGvS5uXuVi0" target="_blank">Ver Video</a>
+            </div>
         </div>
     </div>
 
     <script>
-        function openModal(videoUrl) {
-            document.getElementById("videoModal").style.display = "block";
-            document.getElementById("videoFrame").src = videoUrl;
-        }
-
-        function closeModal() {
-            document.getElementById("videoModal").style.display = "none";
-            document.getElementById("videoFrame").src = "";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById("videoModal")) {
-                closeModal();
+        function toggleVideos(category) {
+            // Ocultar todas las categorías de videos
+            const videos = document.querySelectorAll('.videos');
+            videos.forEach(video => {
+                video.style.display = 'none';
+            });
+            
+            // Mostrar los videos de la categoría seleccionada
+            const selectedCategory = document.getElementById(category);
+            if (selectedCategory) {
+                selectedCategory.style.display = 'block';
             }
         }
     </script>
