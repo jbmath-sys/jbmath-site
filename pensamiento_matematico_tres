@@ -1,1 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pensamiento Matemático III | JBMATH</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
+    <nav class="nav">
+      <a href="pensamiento_matematico_uno.html">PM I</a>
+      <a href="pensamiento_matematico_dos.html">PM II</a>
+      <a href="pensamiento_matematico_tres.html">PM III</a>
+      <a href="pensamiento_matematico_cuatro.html">PM IV</a>
+      <a href="taller_variacional_uno.html">Taller I</a>
+      <a href="taller_variacional_dos.html">Taller II</a>
+      <a href="recursos.html">Recursos</a>
+      <a href="sobre_mi_contacto.html">Contacto</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container content">
+<h1>Pensamiento Matemático III</h1>
+
+<article class="topic">
+  <h2>Funciones</h2>
+  <p class="intro">
+    <!-- Escribe aquí una explicación corta del tema ANTES del video.
+         Ejemplo: definición, propiedades, fórmula clave y un ejemplo breve. -->
+  </p>
+  <div class="video">
+    <!-- Reemplaza VIDEO_ID por el ID real de YouTube -->
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Funciones" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <details class="extra">
+    <summary>Material complementario (opcional)</summary>
+    <ul>
+      <li><a href="#" target="_blank">Guía PDF</a></li>
+      <li><a href="#" target="_blank">Ejercicios</a></li>
+    </ul>
+  </details>
+</article>
+
+<hr/>
+
+<article class="topic">
+  <h2>Sucesiones</h2>
+  <p class="intro">
+    <!-- Escribe aquí una explicación corta del tema ANTES del video.
+         Ejemplo: definición, propiedades, fórmula clave y un ejemplo breve. -->
+  </p>
+  <div class="video">
+    <!-- Reemplaza VIDEO_ID por el ID real de YouTube -->
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Sucesiones" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <details class="extra">
+    <summary>Material complementario (opcional)</summary>
+    <ul>
+      <li><a href="#" target="_blank">Guía PDF</a></li>
+      <li><a href="#" target="_blank">Ejercicios</a></li>
+    </ul>
+  </details>
+</article>
+
+<hr/>
+
+<article class="topic">
+  <h2>Problemas aplicados</h2>
+  <p class="intro">
+    <!-- Escribe aquí una explicación corta del tema ANTES del video.
+         Ejemplo: definición, propiedades, fórmula clave y un ejemplo breve. -->
+  </p>
+  <div class="video">
+    <!-- Reemplaza VIDEO_ID por el ID real de YouTube -->
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Problemas aplicados" frameborder="0" allowfullscreen></iframe>
+  </div>
+  <details class="extra">
+    <summary>Material complementario (opcional)</summary>
+    <ul>
+      <li><a href="#" target="_blank">Guía PDF</a></li>
+      <li><a href="#" target="_blank">Ejercicios</a></li>
+    </ul>
+  </details>
+</article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+
+</body>
+</html>
 
