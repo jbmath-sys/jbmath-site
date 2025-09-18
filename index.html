@@ -1,151 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Canal de YouTube</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-        .category {
-            background-color: white;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 250px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.3s;
-        }
-        .category:hover {
-            transform: scale(1.05);
-        }
-        .category h3 {
-            margin: 10px 0;
-            font-size: 20px;
-        }
-        .videos {
-            display: none;
-            margin-top: 40px;
-        }
-        .video {
-            display: flex;
-            margin-bottom: 20px;
-            gap: 10px;
-        }
-        .video img {
-            width: 100px;
-            height: 56px;
-            border-radius: 8px;
-        }
-        .video h4 {
-            margin: 0;
-            font-size: 16px;
-        }
-        .video p {
-            font-size: 12px;
-            color: #555;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inicio | JBMATH</title>
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
 
-    <header>
-        <h1>Bienvenido a Mi Canal de YouTube</h1>
-        <p>Explora diferentes temas de matemáticas y ciencias.</p>
-    </header>
+<header class="site-header">
+  <div class="container">
+    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
+    <nav class="nav">
+        <a href="pensamiento_matematico_uno.html">PM III</a>
+        <a href="pensamiento_matematico_dos.html">PM III</a>
+      <a href="pensamiento_matematico_tres.html">PM III</a>
+      <a href="pensamiento_matematico_cuatro.html">PM IV</a>
+      <a href="taller_pensamiento_variacional_uno.html">Taller I</a>
+      <a href="taller_pensamiento_variacional_dos.html">Taller II</a>
+      <a href="recursos.html">Recursos</a>
+      <a href="sobre_mi_contacto.html">Contacto</a>
+    </nav>
+  </div>
+</header>
 
-    <div class="container">
-        <div class="category" onclick="toggleVideos('estadistica')">
-            <h3>Estadística</h3>
-            <p>Conceptos básicos y avanzados de estadística.</p>
-        </div>
-        <div class="category" onclick="toggleVideos('trigonometria')">
-            <h3>Trigonometría</h3>
-            <p>Aprende sobre las funciones trigonométricas.</p>
-        </div>
-        <div class="category" onclick="toggleVideos('geometria')">
-            <h3>Geometría</h3>
-            <p>Estudia figuras geométricas y áreas.</p>
-        </div>
-    </div>
+<main class="container content">
 
-    <!-- Videos de Estadística -->
-    <div id="estadistica" class="videos">
-        <div class="video">
-            <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Video 1">
-            <div>
-                <h4>Geometría Analítica </h4>
-                <p>Ejemplo de ecuación punto pendiente</p>
-                <a href="https://www.youtube.com/watch?v=CqEXnTE_Hbw" target="_blank">Ver Video</a>
-            </div>
-        </div>
-        <div class="video">
-            <img src="https://img.youtube.com/vi/C0DPdy98e4c/hqdefault.jpg" alt="Video 2">
-            <div>
-                <h4>Estadística Avanzada</h4>
-                <p>Conceptos avanzados de estadística para análisis de datos.</p>
-                <a href="https://www.youtube.com/watch?v=C0DPdy98e4c" target="_blank">Ver Video</a>
-            </div>
-        </div>
-    </div>
+<section class="hero">
+  <h2>Bienvenido a JBMATH</h2>
+  <p>Portal con videos y materiales de Pensamiento Matemático y Taller de Pensamiento Variacional. Selecciona una sección.</p>
+</section>
 
-    <!-- Videos de Trigonometría -->
-    <div id="trigonometria" class="videos">
-        <div class="video">
-            <img src="https://img.youtube.com/vi/Zh2AKml8DgM/hqdefault.jpg" alt="Video 3">
-            <div>
-                <h4>Funciones Trigonométricas</h4>
-                <p>Conceptos fundamentales de seno, coseno y tangente.</p>
-                <a href="https://www.youtube.com/watch?v=Zh2AKml8DgM" target="_blank">Ver Video</a>
-            </div>
-        </div>
-    </div>
+<section class="cards">
+  <a class="card" href="pensamiento_matematico_uno.html"><h3>Pensamiento Matemático I</h3><p>Logica Matemática, Los Numeros, Numeros Naturales .</p></a>
+  <a class="card" href="pensamiento_matematico_dos.html"><h3>Pensamiento Matemático II</h3><p>Conceptos básicos de álgebra, Tipos de expresiones algebricas y sus elementos, .</p></a>  
+  <a class="card" href="pensamiento_matematico_tres.html"><h3>Pensamiento Matemático III</h3><p>Conceptos básicos, probabilidad y distribuciones.</p></a>
+  <a class="card" href="pensamiento_matematico_cuatro.html"><h3>Pensamiento Matemático IV</h3><p>Funciones, sucesiones y problemas aplicados.</p></a>
+  <a class="card" href="taller_pensamiento_variacional_uno.html"><h3>Taller de Pensamiento Variacional I</h3><p>Temas y materiales.</p></a>
+  <a class="card" href="taller_pensamiento_variacional_dos.html"><h3>Taller de Pensamiento Variacional II</h3><p>Temas y materiales.</p></a>
+  <a class="card" href="recursos.html"><h3>Recursos</h3><p>Guías PDF, ejercicios e infografías.</p></a>
+</section>
 
-    <!-- Videos de Geometría -->
-    <div id="geometria" class="videos">
-        <div class="video">
-            <img src="https://img.youtube.com/vi/WGvS5uXuVi0/hqdefault.jpg" alt="Video 4">
-            <div>
-                <h4>Áreas de Figuras</h4>
-                <p>Aprende a calcular el área de diferentes figuras geométricas.</p>
-                <a href="https://www.youtube.com/watch?v=WGvS5uXuVi0" target="_blank">Ver Video</a>
-            </div>
-        </div>
-    </div>
+</main>
 
-    <script>
-        function toggleVideos(category) {
-            // Ocultar todas las categorías de videos
-            const videos = document.querySelectorAll('.videos');
-            videos.forEach(video => {
-                video.style.display = 'none';
-            });
-            
-            // Mostrar los videos de la categoría seleccionada
-            const selectedCategory = document.getElementById(category);
-            if (selectedCategory) {
-                selectedCategory.style.display = 'block';
-            }
-        }
-    </script>
+<footer class="site-footer">
+  <div class="container">
+    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
+  </div>
+</footer>
+<script src="assets/script.js"></script>
+
 </body>
 </html>
