@@ -6,9 +6,6 @@
   <title>Pensamiento Matemático I - Propósitos de aprendizaje | JBMATH</title>
 
   <link rel="stylesheet" href="assets/style.css" />
-
-  <Favicon>
-  <link rel="icon" href="assets/imagenes/LogoAzul.png"> 
 </head>
 
 <body>
@@ -31,91 +28,118 @@
   </header>
 
   <main class="container">
+    <!-- Breadcrumbs -->
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="index.html">Inicio</a>
+      <span class="sep">›</span>
+      <span>Pensamiento Matemático I</span>
+      <span class="sep">›</span>
+      <strong>Propósitos</strong>
+    </nav>
+
     <section class="hero">
       <div class="hero-card">
         <p class="badge">Pensamiento Matemático I</p>
         <h1 class="title">Pensamiento Aritmético</h1>
         <p class="subtitle">Selecciona un propósito de aprendizaje para ver los temas.</p>
+
+        <!-- Buscador -->
+        <div class="search-wrap">
+          <div class="search" role="search" aria-label="Buscar temas">
+            <input
+              data-search="input"
+              type="search"
+              placeholder="Buscar tema… (ej: fracciones, MCD, lógica, raíces)"
+              aria-label="Buscar tema"
+            />
+          </div>
+
+          <button class="btn" type="button" data-search="clear">Limpiar</button>
+          <span class="kbd">Ctrl/⌘ K</span>
+          <span class="kbd" data-search="counter">0 resultado(s)</span>
+        </div>
+
+        <p class="hint">Tip: escribe una palabra y te filtra TODO. Escape limpia si estás en el buscador.</p>
       </div>
     </section>
 
     <section class="grid">
       <!-- P1 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 1</h2>
+        <h2 class="card-title" data-item="proposito 1 proposito de aprendizaje 1 logica tablas verdad proposiciones">Propósito de aprendizaje 1</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p1_t1.html">Conceptualización de Lógica Matemática</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p1_t2.html">Tablas de verdad</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p1_t3.html">Proposiciones compuestas y operadores lógicos (Conjunción y Disyunción)</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p1_t4.html">Proposiciones condicionales y bicondicionales</a></li>
+          <li data-item="logica matematica conceptualizacion"><a class="chip" href="pm1_propositos/pm1_p1_t1.html">Conceptualización de Lógica Matemática</a></li>
+          <li data-item="tablas de verdad"><a class="chip" href="pm1_propositos/pm1_p1_t2.html">Tablas de verdad</a></li>
+          <li data-item="proposiciones compuestas operadores logicos conjuncion disyuncion"><a class="chip" href="pm1_propositos/pm1_p1_t3.html">Proposiciones compuestas y operadores lógicos (Conjunción y Disyunción)</a></li>
+          <li data-item="condicional bicondicional"><a class="chip" href="pm1_propositos/pm1_p1_t4.html">Proposiciones condicionales y bicondicionales</a></li>
         </ul>
       </article>
 
       <!-- P2 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 2</h2>
+        <h2 class="card-title" data-item="proposito 2 sistemas numeracion mesopotamia egipto america india arabia cero olmeca maya">Propósito de aprendizaje 2</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p2_t1.html">Sistema de conteo en Mesopotamia, Egipto, América, India y Arabia; importancia del cero en los pueblos olmeca y maya</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p2_t2.html">Concepto de número y números naturales</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p2_t3.html">Leonardo de Pisa y el sistema numeral indoarábigo</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p2_t4.html">Concepto y uso del ábaco</a></li>
+          <li data-item="sistema de conteo mesopotamia egipto america india arabia cero olmeca maya"><a class="chip" href="pm1_propositos/pm1_p2_t1.html">Sistema de conteo en Mesopotamia, Egipto, América, India y Arabia; importancia del cero en los pueblos olmeca y maya</a></li>
+          <li data-item="concepto de numero numeros naturales"><a class="chip" href="pm1_propositos/pm1_p2_t2.html">Concepto de número y números naturales</a></li>
+          <li data-item="leonardo de pisa fibonacci sistema numeral indoarabigo"><a class="chip" href="pm1_propositos/pm1_p2_t3.html">Leonardo de Pisa y el sistema numeral indoarábigo</a></li>
+          <li data-item="abaco uso del abaco"><a class="chip" href="pm1_propositos/pm1_p2_t4.html">Concepto y uso del ábaco</a></li>
         </ul>
       </article>
 
       <!-- P3 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 3</h2>
+        <h2 class="card-title" data-item="proposito 3 numeros reales operaciones inversas propiedades mcd mcm factorizacion">Propósito de aprendizaje 3</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p3_t1.html">Clasificación de los números reales</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p3_t2.html">Operaciones aritméticas y sus inversas con números enteros</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p3_t3.html">Propiedades: cerradura, conmutativa, asociativa; neutros e inversos (aditivo y multiplicativo)</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p3_t4.html">Factorización de números naturales (Teorema Fundamental de la Aritmética)</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p3_t5.html">Máximo común divisor y mínimo común múltiplo</a></li>
+          <li data-item="clasificacion numeros reales"><a class="chip" href="pm1_propositos/pm1_p3_t1.html">Clasificación de los números reales</a></li>
+          <li data-item="operaciones aritmeticas inversas enteros"><a class="chip" href="pm1_propositos/pm1_p3_t2.html">Operaciones aritméticas y sus inversas con números enteros</a></li>
+          <li data-item="propiedades cerradura conmutativa asociativa neutro inverso aditivo multiplicativo"><a class="chip" href="pm1_propositos/pm1_p3_t3.html">Propiedades: cerradura, conmutativa, asociativa; neutros e inversos (aditivo y multiplicativo)</a></li>
+          <li data-item="factorizacion teorema fundamental aritmetica primos"><a class="chip" href="pm1_propositos/pm1_p3_t4.html">Factorización de números naturales (Teorema Fundamental de la Aritmética)</a></li>
+          <li data-item="mcd mcm maximo comun divisor minimo comun multiplo"><a class="chip" href="pm1_propositos/pm1_p3_t5.html">Máximo común divisor y mínimo común múltiplo</a></li>
         </ul>
       </article>
 
       <!-- P4 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 4</h2>
+        <h2 class="card-title" data-item="proposito 4 fracciones racionales equivalencias simplificacion proporcion porcentaje">Propósito de aprendizaje 4</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p4_t1.html">Unidad y números racionales como fracción (estructura)</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p4_t2.html">Equivalencias entre fracciones y entre enteros y fracciones</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p4_t3.html">Simplificación de fracciones</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p4_t4.html">Proporción, proporción inversa y porcentaje</a></li>
+          <li data-item="unidad numeros racionales fraccion estructura"><a class="chip" href="pm1_propositos/pm1_p4_t1.html">Unidad y números racionales como fracción (estructura)</a></li>
+          <li data-item="equivalencias fracciones enteros"><a class="chip" href="pm1_propositos/pm1_p4_t2.html">Equivalencias entre fracciones y entre enteros y fracciones</a></li>
+          <li data-item="simplificacion fracciones"><a class="chip" href="pm1_propositos/pm1_p4_t3.html">Simplificación de fracciones</a></li>
+          <li data-item="proporcion proporcion inversa porcentaje"><a class="chip" href="pm1_propositos/pm1_p4_t4.html">Proporción, proporción inversa y porcentaje</a></li>
         </ul>
       </article>
 
       <!-- P5 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 5</h2>
+        <h2 class="card-title" data-item="proposito 5 potencias exponentes negativos raiz cuadrada radicales">Propósito de aprendizaje 5</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p5_t1.html">Componentes de una potencia</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p5_t2.html">Operaciones con potencias (reglas)</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p5_t3.html">Exponentes negativos como inverso multiplicativo de la base</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p5_t4.html">Raíz cuadrada: partes; y raíces de índice distinto de 2</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p5_t5.html">Raíces como inverso de potencias y cancelación de potencias/raíces</a></li>
+          <li data-item="componentes potencia base exponente"><a class="chip" href="pm1_propositos/pm1_p5_t1.html">Componentes de una potencia</a></li>
+          <li data-item="operaciones con potencias reglas"><a class="chip" href="pm1_propositos/pm1_p5_t2.html">Operaciones con potencias (reglas)</a></li>
+          <li data-item="exponentes negativos inverso multiplicativo"><a class="chip" href="pm1_propositos/pm1_p5_t3.html">Exponentes negativos como inverso multiplicativo de la base</a></li>
+          <li data-item="raiz cuadrada indice radicando"><a class="chip" href="pm1_propositos/pm1_p5_t4.html">Raíz cuadrada: partes; y raíces de índice distinto de 2</a></li>
+          <li data-item="raices inverso de potencias cancelacion"><a class="chip" href="pm1_propositos/pm1_p5_t5.html">Raíces como inverso de potencias y cancelación de potencias/raíces</a></li>
         </ul>
       </article>
 
       <!-- P6 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 6</h2>
+        <h2 class="card-title" data-item="proposito 6 medicion unidades si notacion cientifica magnitudes razon proporcion">Propósito de aprendizaje 6</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p6_t1.html">Concepto de medición</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p6_t2.html">Unidades de medida y Sistema Internacional</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p6_t3.html">Magnitudes y notación científica</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p6_t4.html">Razón y proporción</a></li>
+          <li data-item="concepto de medicion"><a class="chip" href="pm1_propositos/pm1_p6_t1.html">Concepto de medición</a></li>
+          <li data-item="unidades de medida sistema internacional"><a class="chip" href="pm1_propositos/pm1_p6_t2.html">Unidades de medida y Sistema Internacional</a></li>
+          <li data-item="magnitudes notacion cientifica"><a class="chip" href="pm1_propositos/pm1_p6_t3.html">Magnitudes y notación científica</a></li>
+          <li data-item="razon y proporcion"><a class="chip" href="pm1_propositos/pm1_p6_t4.html">Razón y proporción</a></li>
         </ul>
       </article>
 
       <!-- P7 -->
       <article class="card">
-        <h2 class="card-title">Propósito de aprendizaje 7</h2>
+        <h2 class="card-title" data-item="proposito 7 jerarquia operaciones combinadas parentesis llaves corchetes enteros">Propósito de aprendizaje 7</h2>
         <ul class="link-list">
-          <li><a class="chip" href="pm1_propositos/pm1_p7_t1.html">Jerarquía de operaciones (operaciones combinadas)</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p7_t2.html">Uso de paréntesis, corchetes y llaves</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p7_t3.html">Resta de enteros como suma con el opuesto</a></li>
-          <li><a class="chip" href="pm1_propositos/pm1_p7_t4.html">Operaciones combinadas con +, −, ×, ÷, potencias y raíces</a></li>
+          <li data-item="jerarquia de operaciones operaciones combinadas"><a class="chip" href="pm1_propositos/pm1_p7_t1.html">Jerarquía de operaciones (operaciones combinadas)</a></li>
+          <li data-item="parentesis corchetes llaves simbolos"><a class="chip" href="pm1_propositos/pm1_p7_t2.html">Uso de paréntesis, corchetes y llaves</a></li>
+          <li data-item="resta enteros suma con opuesto"><a class="chip" href="pm1_propositos/pm1_p7_t3.html">Resta de enteros como suma con el opuesto</a></li>
+          <li data-item="operaciones combinadas adicion sustraccion multiplicacion division potencias raices"><a class="chip" href="pm1_propositos/pm1_p7_t4.html">Operaciones combinadas con +, −, ×, ÷, potencias y raíces</a></li>
         </ul>
       </article>
     </section>
@@ -127,6 +151,9 @@
       <p class="muted">Hecho con café y números (en ese orden).</p>
     </div>
   </footer>
+
+  <script src="assets/app.js" defer></script>
 </body>
 </html>
+
 
