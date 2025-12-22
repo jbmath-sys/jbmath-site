@@ -4,59 +4,143 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Inicio | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css?v=1" />
+
+  <!-- Usa tu style PRO -->
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
+
 <body>
-
-<header class="site-header">
-  <div class="container">
-    <!-- 🔹 Logo + texto -->
-    <h1 class="logo">
-      <a href="index.html">
-        <img src="assets/imagenes/logo.png" alt="Logo JBMATH" style="height:100px; vertical-align:middle; margin-right:8px;">
-        JBMATH
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="assets/img/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Pensamiento Matemático I–VI</span>
+        </div>
       </a>
-    </h1>
-    <!-- 🔹 Navegación -->
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
-    </nav>
-  </div>
-</header>
 
-<main class="container content">
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="pm2_progresiones.html">PM II</a>
+        <a class="nav-link" href="pm3_progresiones.html">PM III</a>
+        <a class="nav-link" href="pm4_progresiones.html">PM IV</a>
+        <a class="nav-link" href="pm5_progresiones.html">PM V</a>
+        <a class="nav-link" href="pm6_progresiones.html">PM VI</a>
+        <a class="nav-link" href="recursos.html">Recursos</a>
+        <a class="nav-link" href="sobre_mi_contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
 
-<section class="hero">
-  <h2>Bienvenido a JBMATH</h2>
-  <p>Portal con videos y materiales de Pensamiento Matemático I al VI. Selecciona una sección.</p>
-</section>
+  <main class="container">
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">Bienvenido</p>
+        <h1 class="title">Aprende matemáticas sin sufrir… tanto 😄</h1>
+        <p class="subtitle">
+          Portal con videos y materiales de Pensamiento Matemático I al VI. Selecciona una sección o busca un tema.
+        </p>
 
-<section class="cards">
-  <a class="card" href="pm1_progresiones.html"><h3>Pensamiento Matemático I</h3><p>Logica Matemática, Los Numeros, Numeros Naturales .</p></a>
-  <a class="card" href="pm2_progresiones.html"><h3>Pensamiento Matemático II</h3><p>Conceptos básicos de álgebra, Tipos de expresiones algebricas y sus elementos, .</p></a>  
-  <a class="card" href="pm3_progresiones.html"><h3>Pensamiento Matemático III</h3><p>Conceptos básicos, probabilidad y distribuciones.</p></a>
-  <a class="card" href="pm4_progresiones.html"><h3>Pensamiento Matemático IV</h3><p>Funciones, sucesiones y problemas aplicados.</p></a>
-  <a class="card" href="pm5_progresiones.html"><h3>Pensamiento Matemático V</h3><p>Temas y materiales.</p></a>
-  <a class="card" href="pm6_progresiones.html"><h3>Pensamiento Matemático VI</h3><p>Temas y materiales.</p></a>
-  <a class="card" href="recursos.html"><h3>Recursos</h3><p>Guías PDF, ejercicios e infografías.</p></a>
-  <a class="card" href="sobre_mi_contacto.html"><h3>Contacto</h3><p> Redes, contacto.</p></a>
-</section>
+        <!-- Buscador (filtra tarjetas) -->
+        <div class="search-wrap">
+          <div class="search" role="search" aria-label="Buscar secciones">
+            <input
+              data-search="input"
+              type="search"
+              placeholder="Buscar… (ej: fracciones, probabilidad, funciones, álgebra)"
+              aria-label="Buscar"
+            />
+          </div>
 
-</main>
+          <button class="btn" type="button" data-search="clear">Limpiar</button>
+          <span class="kbd">Ctrl/⌘ K</span>
+          <span class="kbd" data-search="counter">0 resultado(s)</span>
+        </div>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
-<script src="assets/script.js"></script>
+        <p class="hint">Tip: escribe una palabra y se filtra la lista. Escape limpia.</p>
+      </div>
+    </section>
 
+    <section class="grid" aria-label="Secciones">
+      <article class="card" data-item="pm1 pensamiento matematico i logica numeros naturales aritmetica">
+        <h2 class="card-title">Pensamiento Matemático I</h2>
+        <p class="muted">Lógica matemática, números, MCD/MCM, fracciones, potencias y raíces.</p>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_progresiones.html">Entrar a PM I →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="pm2 pensamiento matematico ii algebra expresiones algebraicas">
+        <h2 class="card-title">Pensamiento Matemático II</h2>
+        <p class="muted">Álgebra: expresiones, operaciones, simplificación y bases para ecuaciones.</p>
+        <div class="search-wrap">
+          <a class="btn" href="pm2_progresiones.html">Entrar a PM II →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="pm3 pensamiento matematico iii probabilidad estadistica distribuciones">
+        <h2 class="card-title">Pensamiento Matemático III</h2>
+        <p class="muted">Probabilidad, estadística y distribuciones. Datos con sentido, no con fe.</p>
+        <div class="search-wrap">
+          <a class="btn" href="pm3_progresiones.html">Entrar a PM III →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="pm4 pensamiento matematico iv funciones sucesiones problemas aplicados">
+        <h2 class="card-title">Pensamiento Matemático IV</h2>
+        <p class="muted">Funciones, sucesiones y problemas aplicados (de los que sí aparecen en la vida).</p>
+        <div class="search-wrap">
+          <a class="btn" href="pm4_progresiones.html">Entrar a PM IV →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="pm5 pensamiento matematico v temas materiales">
+        <h2 class="card-title">Pensamiento Matemático V</h2>
+        <p class="muted">Temas y materiales (lo dejamos listo para crecer).</p>
+        <div class="search-wrap">
+          <a class="btn" href="pm5_progresiones.html">Entrar a PM V →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="pm6 pensamiento matematico vi temas materiales">
+        <h2 class="card-title">Pensamiento Matemático VI</h2>
+        <p class="muted">Temas y materiales (siguiente fase del proyecto).</p>
+        <div class="search-wrap">
+          <a class="btn" href="pm6_progresiones.html">Entrar a PM VI →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="recursos guias pdf ejercicios infografias">
+        <h2 class="card-title">Recursos</h2>
+        <p class="muted">Guías PDF, ejercicios, infografías y material descargable.</p>
+        <div class="search-wrap">
+          <a class="btn" href="recursos.html">Ver recursos →</a>
+        </div>
+      </article>
+
+      <article class="card" data-item="contacto redes youtube correo">
+        <h2 class="card-title">Contacto</h2>
+        <p class="muted">Redes, canal y formas de contacto.</p>
+        <div class="search-wrap">
+          <a class="btn" href="sobre_mi_contacto.html">Ir a contacto →</a>
+          <a class="btn" href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">YouTube →</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Profe JB — JBMATH</p>
+      <p class="muted">
+        <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- IMPORTANTE: usa el app.js del buscador -->
+  <script src="assets/app.js" defer></script>
 </body>
 </html>
+
