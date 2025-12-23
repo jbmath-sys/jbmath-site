@@ -294,3 +294,20 @@ small{ color: var(--muted); }
   .site-nav{ justify-content: flex-start; }
 }
 
+.site-footer{
+  margin-top:60px;
+  padding:16px 0;
+  text-align:center;
+}
+
+.yt-icon{
+  width:22px;
+  opacity:0.45;
+  transition:opacity 0.2s ease, transform 0.2s ease;
+}
+
+.yt-icon:hover{
+  opacity:0.85;
+  transform:scale(1.05);
+}
+
