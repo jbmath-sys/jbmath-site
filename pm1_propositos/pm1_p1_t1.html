@@ -85,26 +85,54 @@
           <li>“Hoy lloverá.”</li>
         </ul>
 
-        <h2>4) Video explicativo</h2>
+        <!-- ✅ 4) Video del subtema (con guía pedagógica + playlist + profundizar) -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2>4) Video del subtema</h2>
 
-         <div class="video-preview">
-           <div class="video-frame">
-             <iframe
-               src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+          <div class="video-grid">
+            <!-- Vista previa (embed) -->
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
                 title="Lógica Matemática - Proposiciones"
                 frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen>
-            </iframe>
-           </div>
+              </iframe>
+            </div>
 
-        <p class="video-caption">
-           🎥 Video introductorio sobre proposiciones y conectores lógicos,
-           con ejemplos claros y directos.
-        </p>
-       </div>
+            <!-- Guía pedagógica + botones -->
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Identificar qué es una proposición y decidir si un enunciado
+                es verdadero o falso antes de combinar proposiciones con conectores.
+              </p>
 
+              <ul class="video-points">
+                <li>Distingue proposición vs. enunciado abierto (“x &gt; 2”).</li>
+                <li>Clasifica ejemplos como V/F con rapidez.</li>
+                <li>Base para tablas de verdad y el condicional.</li>
+              </ul>
 
+              <div class="video-actions">
+                <!-- 🎓 Playlist por propósito (cambia el ID cuando la crees) -->
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <!-- 🖱️ Profundizar (ver en YouTube) -->
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- ✅ fin bloque video -->
 
         <div class="search-wrap">
           <a class="btn" href="pm1_p1_t2.html">Ir a Tablas de verdad →</a>
@@ -121,9 +149,9 @@
         <p class="muted">Hecho con café y números (en ese orden).</p>
       </div>
 
-      <!-- ✅ YouTube ultra-minimal (hereda color, oscuro automático) -->
+      <!-- ✅ Ícono YouTube (hereda color, oscuro automático) -->
       <a class="yt-link"
-         href="https://www.youtube.com/c/JBMath"
+         href="https://www.youtube.com/@JBMATH"
          target="_blank"
          rel="noopener"
          aria-label="Canal de YouTube JBMATH">
