@@ -294,20 +294,74 @@ small{ color: var(--muted); }
   .site-nav{ justify-content: flex-start; }
 }
 
+/* ===== Footer (ultra-minimal, hereda tema) ===== */
 .site-footer{
-  margin-top:60px;
-  padding:16px 0;
-  text-align:center;
+  margin-top: 60px;
+  padding: 14px 0;
+  border-top: 1px solid rgba(0,0,0,.08);
+  color: inherit;
+  background: transparent;
+}
+
+.site-footer .footer-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* texto izq, icono der */
+  gap: 12px;
+}
+
+.site-footer .footer-copy p{
+  margin: 0;
+}
+
+.muted{
+  opacity: .72;
+}
+
+/* Link YouTube ultra-minimal */
+.yt-link{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit;
+  opacity: .55;
+  text-decoration: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.yt-link:hover{
+  opacity: .9;
+  transform: scale(1.06);
 }
 
 .yt-icon{
-  width:22px;
-  opacity:0.45;
-  transition:opacity 0.2s ease, transform 0.2s ease;
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
 }
 
-.yt-icon:hover{
-  opacity:0.85;
-  transform:scale(1.05);
+/* 📱 móvil: icono a la derecha, texto normal */
+@media (max-width: 640px){
+  .site-footer .footer-inner{
+    justify-content: space-between;
+  }
 }
+
+/* 🌙 modo oscuro automático */
+@media (prefers-color-scheme: dark){
+  .site-footer{
+    border-top: 1px solid rgba(255,255,255,.14);
+  }
+  .yt-link{
+    opacity: .6;
+  }
+}
+
+/* Link inline (opcional, bonito y discreto) */
+.inline-link{
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 
