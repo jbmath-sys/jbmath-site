@@ -248,4 +248,60 @@ small{color:var(--muted);}
   .video-grid{grid-template-columns:1fr;}
 }
 
+/* ===== PM1 Propósitos: chips como botones en grid ===== */
+.card .link-list{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+/* Quita viñetas y márgenes del ul */
+.card .link-list{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Cada li ocupa el ancho de su celda */
+.card .link-list > li{
+  margin: 0;
+}
+
+/* Chip: que se vea como botón/tarjeta y soporte títulos largos */
+.card .chip{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  min-height: 52px;
+  padding: 12px 14px;
+
+  /* conserva tu look glass */
+  border-radius: 16px;
+
+  /* mejora legibilidad en textos largos */
+  line-height: 1.25;
+  white-space: normal;
+}
+
+/* Flechita sutil (se siente como botón) */
+.card .chip::after{
+  content: "→";
+  opacity: .65;
+  flex: 0 0 auto;
+}
+
+/* Hover un poquito más “premium” sin cambiar tu estilo base */
+.card .chip:hover{
+  transform: translateY(-1px);
+}
+
+/* Responsive: en móvil una columna */
+@media (max-width: 860px){
+  .card .link-list{
+    grid-template-columns: 1fr;
+  }
+}
+
 
