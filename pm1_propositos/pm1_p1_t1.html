@@ -67,77 +67,6 @@
       color:rgba(255,255,255,.82);
       font-size:12px;
     }
-
-    .truth-wrap{
-      margin-top:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      border-radius:16px;
-      padding:14px;
-    }
-    .truth-controls{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      margin-top:8px;
-    }
-    .select{
-      padding:10px 12px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.06);
-      color:rgba(255,255,255,.9);
-      outline:none;
-    }
-    .truth-table{
-      width:100%;
-      border-collapse:separate;
-      border-spacing:0;
-      margin-top:12px;
-      border:1px solid var(--line);
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(0,0,0,.12);
-    }
-    .truth-table th, .truth-table td{
-      text-align:center;
-      padding:10px;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      border-right:1px solid rgba(255,255,255,.06);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:13px;
-    }
-    .truth-table th{
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      color: var(--muted);
-      font-size:12px;
-      letter-spacing:.2px;
-    }
-    .truth-table tr:last-child td{ border-bottom:none; }
-    .truth-table td:last-child, .truth-table th:last-child{ border-right:none; }
-
-    .cell-flash{
-      animation: flash 0.35s ease;
-      background: rgba(124,58,237,.10);
-      box-shadow: 0 0 0 2px rgba(124,58,237,.20) inset;
-    }
-    @keyframes flash{
-      from{ transform: translateY(-2px); }
-      to{ transform: translateY(0); }
-    }
-    .vf{
-      display:inline-flex;
-      min-width:32px;
-      justify-content:center;
-      padding:4px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.03);
-      font-weight:900;
-    }
-    .vf.v{ border-color: rgba(34,197,94,.55); background: rgba(34,197,94,.10); }
-    .vf.f{ border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.10); }
   </style>
 </head>
 
@@ -204,8 +133,32 @@
           <br>Ejemplos que NO son proposiciones: preguntas, órdenes, deseos o expresiones con variable (como “x + 3 = 7”).
         </div>
 
-        <!-- ✅ 2) conectores con tabla simple -->
-        <h2 style="margin-top:22px;">2) Conectores lógicos</h2>
+        <!-- ✅ NUEVO: Valor de verdad -->
+        <h2 style="margin-top:22px;">2) ¿Qué es un valor de verdad?</h2>
+        <p>
+          El <strong>valor de verdad</strong> es la “etiqueta” que le ponemos a una proposición para indicar si es
+          <strong>Verdadera (V)</strong> o <strong>Falsa (F)</strong>.
+        </p>
+        <p>
+          En otras palabras: una proposición siempre termina viviendo en uno de estos dos bandos: <strong>V</strong> o <strong>F</strong>.
+          (La lógica no acepta “más o menos”... así de exigente.)
+        </p>
+        <ul>
+          <li><strong>V:</strong> “8 es múltiplo de 2.”</li>
+          <li><strong>F:</strong> “9 es un número par.”</li>
+          <li><strong>F:</strong> “Todos los números primos son impares.” (porque <strong>2</strong> es primo y es par)</li>
+        </ul>
+
+        <div class="callout">
+          <strong>Ojo:</strong>
+          <p style="margin:0;">
+            Algunas proposiciones hablan del futuro, por ejemplo: “Hoy lloverá”.
+            <br>✅ Sí es proposición (tendrá V o F), aunque <em>ahorita</em> no sepamos cuál será.
+          </p>
+        </div>
+
+        <!-- ✅ Ajuste de numeración: conectores pasan a 3 -->
+        <h2 style="margin-top:22px;">3) Conectores lógicos</h2>
         <p>
           Los conectores sirven para <strong>unir</strong> proposiciones y formar una nueva proposición.
         </p>
@@ -227,63 +180,13 @@
           </p>
         </div>
 
-        <!-- ✅ 3) Práctica interactiva -->
-        <h2 style="margin-top:22px;">3) Práctica interactiva</h2>
+        <!-- ✅ Práctica interactiva (ahora es 4) -->
+        <h2 style="margin-top:22px;">4) Práctica interactiva</h2>
         <p>Contesta y te digo al instante si estuvo bien:</p>
 
         <div class="quiz" id="quizBox" aria-live="polite"></div>
 
-        <!-- ✅ 4) Tabla de verdad animada -->
-        <h2 style="margin-top:22px;">4) Tabla de verdad animada</h2>
-        <p>
-          Elige el conector y presiona <strong>Animar</strong>. Verás la tabla de verdad fila por fila.
-        </p>
-
-        <div class="truth-wrap">
-          <div class="truth-controls">
-            <label for="opSel" class="muted">Conector:</label>
-            <select id="opSel" class="select" aria-label="Seleccionar conector lógico">
-              <option value="and">p ∧ q (y)</option>
-              <option value="or">p ∨ q (o)</option>
-              <option value="imp">p → q (si…entonces)</option>
-              <option value="iff">p ↔ q (si y solo si)</option>
-              <option value="notp">¬p (no p)</option>
-            </select>
-
-            <button class="btn" id="btnFill">Llenar</button>
-            <button class="btn" id="btnAnim">Animar</button>
-          </div>
-
-          <table class="truth-table" aria-label="Tabla de verdad">
-            <thead>
-              <tr>
-                <th>p</th>
-                <th>q</th>
-                <th id="resTitle">Resultado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td id="p0"></td><td id="q0"></td><td id="r0"></td>
-              </tr>
-              <tr>
-                <td id="p1"></td><td id="q1"></td><td id="r1"></td>
-              </tr>
-              <tr>
-                <td id="p2"></td><td id="q2"></td><td id="r2"></td>
-              </tr>
-              <tr>
-                <td id="p3"></td><td id="q3"></td><td id="r3"></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <p class="hint">
-            Nota: Para <strong>p → q</strong>, la única fila falsa es (p=V, q=F). Sí, la lógica es estricta… como el profe cuando ya son 7:59 😄
-          </p>
-        </div>
-
-        <!-- ✅ 5) Video (tu bloque tal cual) -->
+        <!-- ✅ Video (ahora es 5) -->
         <section class="video-block" aria-label="Video del tema">
           <h2>5) Video del subtema</h2>
 
@@ -354,10 +257,10 @@
     </div>
   </footer>
 
-  <!-- ✅ Solo lo necesario: JS para quiz + tabla animada -->
+  <!-- ✅ Solo lo necesario: JS para quiz -->
   <script>
     // =========================
-    // 1) QUIZ (interactivo)
+    // QUIZ (interactivo)
     // =========================
     const quizData = [
       {
@@ -401,7 +304,7 @@
         <div id="quizItems"></div>
         <div class="score-line">
           <span class="pill" id="pillScore">Puntaje: 0/4</span>
-          <button class="btn" id="btnResetQuiz">Reiniciar</button>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
         </div>
         <div class="feedback" id="quizGlobal"></div>
       `;
@@ -415,7 +318,7 @@
         el.innerHTML = `
           <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
           <div class="opts">
-            ${item.opts.map((o, j)=> `<button class="btn" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
           </div>
           <div class="feedback" id="fb-${i}"></div>
         `;
@@ -471,74 +374,8 @@
       }
     }
 
-    // =========================
-    // 2) TABLA DE VERDAD
-    // =========================
-    const combos = [
-      {p:true,  q:true},
-      {p:true,  q:false},
-      {p:false, q:true},
-      {p:false, q:false}
-    ];
-
-    function vf(v){
-      return `<span class="vf ${v ? "v":"f"}">${v ? "V":"F"}</span>`;
-    }
-
-    function opTitle(op){
-      switch(op){
-        case "and": return "p ∧ q";
-        case "or": return "p ∨ q";
-        case "imp": return "p → q";
-        case "iff": return "p ↔ q";
-        case "notp": return "¬p";
-        default: return "Resultado";
-      }
-    }
-
-    function opResult(op, p, q){
-      switch(op){
-        case "and": return p && q;
-        case "or": return p || q;
-        case "imp": return (!p) || q;  // p -> q
-        case "iff": return p === q;    // p <-> q
-        case "notp": return !p;        // ¬p
-      }
-    }
-
-    function fillTable(){
-      const op = document.getElementById("opSel").value;
-      document.getElementById("resTitle").textContent = opTitle(op);
-
-      combos.forEach((c, i)=>{
-        document.getElementById("p"+i).innerHTML = vf(c.p);
-        document.getElementById("q"+i).innerHTML = vf(c.q);
-        document.getElementById("r"+i).innerHTML = vf(opResult(op, c.p, c.q));
-      });
-    }
-
-    async function animateTable(){
-      fillTable();
-      const op = document.getElementById("opSel").value;
-
-      for(let i=0;i<combos.length;i++){
-        const ids = ["p"+i,"q"+i,"r"+i];
-        ids.forEach(id => document.getElementById(id).classList.add("cell-flash"));
-        // refresca contenido (por si cambió op)
-        document.getElementById("r"+i).innerHTML = vf(opResult(op, combos[i].p, combos[i].q));
-        await new Promise(r=>setTimeout(r, 320));
-        ids.forEach(id => document.getElementById(id).classList.remove("cell-flash"));
-        await new Promise(r=>setTimeout(r, 80));
-      }
-    }
-
-    // init + bindings
+    // init
     renderQuiz();
-    fillTable();
-
-    document.getElementById("btnFill").addEventListener("click", fillTable);
-    document.getElementById("btnAnim").addEventListener("click", animateTable);
-    document.getElementById("opSel").addEventListener("change", fillTable);
   </script>
 
 </body>
