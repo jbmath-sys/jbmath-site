@@ -5,6 +5,140 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Conceptualización de Lógica Matemática | JBMATH</title>
   <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .quiz .btn{ /* usa tu .btn, pero aquí permitimos estado */
+      border-color: rgba(255,255,255,.14);
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+
+    .truth-wrap{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .truth-controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:8px;
+    }
+    .select{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+    }
+    .truth-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .truth-table th, .truth-table td{
+      text-align:center;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+    }
+    .truth-table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .truth-table tr:last-child td{ border-bottom:none; }
+    .truth-table td:last-child, .truth-table th:last-child{ border-right:none; }
+
+    .cell-flash{
+      animation: flash 0.35s ease;
+      background: rgba(124,58,237,.10);
+      box-shadow: 0 0 0 2px rgba(124,58,237,.20) inset;
+    }
+    @keyframes flash{
+      from{ transform: translateY(-2px); }
+      to{ transform: translateY(0); }
+    }
+    .vf{
+      display:inline-flex;
+      min-width:32px;
+      justify-content:center;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      font-weight:900;
+    }
+    .vf.v{ border-color: rgba(34,197,94,.55); background: rgba(34,197,94,.10); }
+    .vf.f{ border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.10); }
+  </style>
 </head>
 
 <body>
@@ -52,10 +186,12 @@
 
     <section class="topic">
       <div class="topic-card">
+
+        <!-- ✅ 1) más sencillo -->
         <h2>1) ¿Qué es una proposición?</h2>
         <p>
-          Una proposición es un enunciado que puede ser <strong>verdadero</strong> o <strong>falso</strong>.
-          Por ejemplo:
+          Una <strong>proposición</strong> es una oración que <strong>afirma algo</strong> y se puede decidir si es
+          <strong>Verdadera (V)</strong> o <strong>Falsa (F)</strong>.
         </p>
         <ul>
           <li>“2 es par.” (V)</li>
@@ -63,11 +199,22 @@
           <li>“Después del martes sigue el miércoles.” (V)</li>
         </ul>
 
-        <h2>2) Conectores lógicos</h2>
+        <div class="mini-note">
+          <strong>Regla rápida:</strong> Si no puedes decir claramente V o F, entonces <strong>no</strong> es proposición.
+          <br>Ejemplos que NO son proposiciones: preguntas, órdenes, deseos o expresiones con variable (como “x + 3 = 7”).
+        </div>
+
+        <!-- ✅ 2) conectores con tabla simple -->
+        <h2 style="margin-top:22px;">2) Conectores lógicos</h2>
         <p>
-          Usamos conectores para formar proposiciones compuestas: <strong>y</strong>, <strong>o</strong>,
-          <strong>si... entonces</strong>.
+          Los conectores sirven para <strong>unir</strong> proposiciones y formar una nueva proposición.
         </p>
+        <ul>
+          <li><strong>y</strong> (p ∧ q) → “p y q”</li>
+          <li><strong>o</strong> (p ∨ q) → “p o q”</li>
+          <li><strong>no</strong> (¬p) → “no p”</li>
+          <li><strong>si… entonces</strong> (p → q) → “si p, entonces q”</li>
+        </ul>
 
         <div class="callout">
           <strong>Ejemplo flash:</strong>
@@ -75,22 +222,72 @@
             Sea p: “Estudio” y q: “Apruebo”. La proposición <strong>p → q</strong> se lee:
             “Si estudio, entonces apruebo”.
           </p>
+          <p style="margin:0;color:var(--muted);">
+            Tip: En lógica, <strong>p → q</strong> solo es falsa cuando p es V y q es F.
+          </p>
         </div>
 
-        <h2>3) Práctica</h2>
-        <p>Convierte estos en proposiciones (y decide si son V/F):</p>
-        <ul>
-          <li>“Zacatecas está en México.”</li>
-          <li>“Todos los números primos son impares.”</li>
-          <li>“Hoy lloverá.”</li>
-        </ul>
+        <!-- ✅ 3) Práctica interactiva -->
+        <h2 style="margin-top:22px;">3) Práctica interactiva</h2>
+        <p>Contesta y te digo al instante si estuvo bien:</p>
 
-        <!-- ✅ 4) Video del subtema (con guía pedagógica + playlist + profundizar) -->
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ 4) Tabla de verdad animada -->
+        <h2 style="margin-top:22px;">4) Tabla de verdad animada</h2>
+        <p>
+          Elige el conector y presiona <strong>Animar</strong>. Verás la tabla de verdad fila por fila.
+        </p>
+
+        <div class="truth-wrap">
+          <div class="truth-controls">
+            <label for="opSel" class="muted">Conector:</label>
+            <select id="opSel" class="select" aria-label="Seleccionar conector lógico">
+              <option value="and">p ∧ q (y)</option>
+              <option value="or">p ∨ q (o)</option>
+              <option value="imp">p → q (si…entonces)</option>
+              <option value="iff">p ↔ q (si y solo si)</option>
+              <option value="notp">¬p (no p)</option>
+            </select>
+
+            <button class="btn" id="btnFill">Llenar</button>
+            <button class="btn" id="btnAnim">Animar</button>
+          </div>
+
+          <table class="truth-table" aria-label="Tabla de verdad">
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th id="resTitle">Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="p0"></td><td id="q0"></td><td id="r0"></td>
+              </tr>
+              <tr>
+                <td id="p1"></td><td id="q1"></td><td id="r1"></td>
+              </tr>
+              <tr>
+                <td id="p2"></td><td id="q2"></td><td id="r2"></td>
+              </tr>
+              <tr>
+                <td id="p3"></td><td id="q3"></td><td id="r3"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="hint">
+            Nota: Para <strong>p → q</strong>, la única fila falsa es (p=V, q=F). Sí, la lógica es estricta… como el profe cuando ya son 7:59 😄
+          </p>
+        </div>
+
+        <!-- ✅ 5) Video (tu bloque tal cual) -->
         <section class="video-block" aria-label="Video del tema">
-          <h2>4) Video del subtema</h2>
+          <h2>5) Video del subtema</h2>
 
           <div class="video-grid">
-            <!-- Vista previa (embed) -->
             <div class="video-frame">
               <iframe
                 src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
@@ -101,7 +298,6 @@
               </iframe>
             </div>
 
-            <!-- Guía pedagógica + botones -->
             <div class="video-meta">
               <p class="video-mini">
                 <strong>Objetivo:</strong> Identificar qué es una proposición y decidir si un enunciado
@@ -115,14 +311,12 @@
               </ul>
 
               <div class="video-actions">
-                <!-- 🎓 Playlist por propósito (cambia el ID cuando la crees) -->
                 <a class="btn btn-ghost"
                    href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
                    target="_blank" rel="noopener">
                   Ver playlist del Propósito 1
                 </a>
 
-                <!-- 🖱️ Profundizar (ver en YouTube) -->
                 <a class="btn"
                    href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
                    target="_blank" rel="noopener">
@@ -132,7 +326,6 @@
             </div>
           </div>
         </section>
-        <!-- ✅ fin bloque video -->
 
         <div class="search-wrap">
           <a class="btn" href="pm1_p1_t2.html">Ir a Tablas de verdad →</a>
@@ -141,7 +334,6 @@
     </section>
   </main>
 
-  <!-- ✅ Footer ÚNICO (ultra-minimal + texto) -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-copy">
@@ -149,7 +341,6 @@
         <p class="muted">Hecho con café y números (en ese orden).</p>
       </div>
 
-      <!-- ✅ Ícono YouTube (hereda color, oscuro automático) -->
       <a class="yt-link"
          href="https://www.youtube.com/@JBMATH"
          target="_blank"
@@ -163,6 +354,194 @@
     </div>
   </footer>
 
+  <!-- ✅ Solo lo necesario: JS para quiz + tabla animada -->
+  <script>
+    // =========================
+    // 1) QUIZ (interactivo)
+    // =========================
+    const quizData = [
+      {
+        q: "“¡Cierra la puerta!”",
+        opts: [
+          {t:"Es proposición", ok:false, why:"Es una orden. No se puede decir V o F."},
+          {t:"No es proposición", ok:true, why:"Correcto: órdenes/preguntas no tienen V/F."}
+        ]
+      },
+      {
+        q: "“2 es par.”",
+        opts: [
+          {t:"Proposición y es V", ok:true, why:"Sí afirma algo y es verdadero."},
+          {t:"Proposición y es F", ok:false, why:"Sí es proposición, pero no es falsa."}
+        ]
+      },
+      {
+        q: "“x + 3 = 7” (sin decir qué vale x)",
+        opts: [
+          {t:"Es proposición", ok:false, why:"Depende del valor de x."},
+          {t:"No es proposición", ok:true, why:"Sin valor fijo de x no puedes decidir V/F."}
+        ]
+      },
+      {
+        q: "“Todos los números primos son impares.”",
+        opts: [
+          {t:"V", ok:false, why:"Falso: 2 es primo y es par."},
+          {t:"F", ok:true, why:"Correcto: el 2 rompe la regla."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fb-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      // evitar doble respuesta
+      const fb = document.getElementById(`fb-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      // marcar botones
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        // marcar la correcta
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Nivel Dios de la lógica. Ya puedes corregir exámenes con mirada de tabla de verdad 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Solo pule uno y quedas fino.";
+        else g.textContent = "Repite el quiz: la lógica no se enoja… pero sí se cobra en el examen.";
+      }
+    }
+
+    // =========================
+    // 2) TABLA DE VERDAD
+    // =========================
+    const combos = [
+      {p:true,  q:true},
+      {p:true,  q:false},
+      {p:false, q:true},
+      {p:false, q:false}
+    ];
+
+    function vf(v){
+      return `<span class="vf ${v ? "v":"f"}">${v ? "V":"F"}</span>`;
+    }
+
+    function opTitle(op){
+      switch(op){
+        case "and": return "p ∧ q";
+        case "or": return "p ∨ q";
+        case "imp": return "p → q";
+        case "iff": return "p ↔ q";
+        case "notp": return "¬p";
+        default: return "Resultado";
+      }
+    }
+
+    function opResult(op, p, q){
+      switch(op){
+        case "and": return p && q;
+        case "or": return p || q;
+        case "imp": return (!p) || q;  // p -> q
+        case "iff": return p === q;    // p <-> q
+        case "notp": return !p;        // ¬p
+      }
+    }
+
+    function fillTable(){
+      const op = document.getElementById("opSel").value;
+      document.getElementById("resTitle").textContent = opTitle(op);
+
+      combos.forEach((c, i)=>{
+        document.getElementById("p"+i).innerHTML = vf(c.p);
+        document.getElementById("q"+i).innerHTML = vf(c.q);
+        document.getElementById("r"+i).innerHTML = vf(opResult(op, c.p, c.q));
+      });
+    }
+
+    async function animateTable(){
+      fillTable();
+      const op = document.getElementById("opSel").value;
+
+      for(let i=0;i<combos.length;i++){
+        const ids = ["p"+i,"q"+i,"r"+i];
+        ids.forEach(id => document.getElementById(id).classList.add("cell-flash"));
+        // refresca contenido (por si cambió op)
+        document.getElementById("r"+i).innerHTML = vf(opResult(op, combos[i].p, combos[i].q));
+        await new Promise(r=>setTimeout(r, 320));
+        ids.forEach(id => document.getElementById(id).classList.remove("cell-flash"));
+        await new Promise(r=>setTimeout(r, 80));
+      }
+    }
+
+    // init + bindings
+    renderQuiz();
+    fillTable();
+
+    document.getElementById("btnFill").addEventListener("click", fillTable);
+    document.getElementById("btnAnim").addEventListener("click", animateTable);
+    document.getElementById("opSel").addEventListener("change", fillTable);
+  </script>
+
 </body>
 </html>
+
 
