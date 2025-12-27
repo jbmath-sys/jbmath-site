@@ -3,70 +3,495 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 2 | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Tablas de Verdad | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .truth-wrap{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .truth-controls{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:8px;
+    }
+    .select{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+    }
+    .truth-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .truth-table th, .truth-table td{
+      text-align:center;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+    }
+    .truth-table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .truth-table tr:last-child td{ border-bottom:none; }
+    .truth-table td:last-child, .truth-table th:last-child{ border-right:none; }
+
+    .cell-flash{
+      animation: flash 0.35s ease;
+      background: rgba(124,58,237,.10);
+      box-shadow: 0 0 0 2px rgba(124,58,237,.20) inset;
+    }
+    @keyframes flash{
+      from{ transform: translateY(-2px); }
+      to{ transform: translateY(0); }
+    }
+    .vf{
+      display:inline-flex;
+      min-width:32px;
+      justify-content:center;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      font-weight:900;
+    }
+    .vf.v{ border-color: rgba(34,197,94,.55); background: rgba(34,197,94,.10); }
+    .vf.f{ border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.10); }
+
+    .steps{
+      margin-top:12px;
+      padding-left:18px;
+      color:rgba(255,255,255,.84);
+      line-height:1.6;
+    }
+
+    .practice{
+      margin-top:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .practice h3{ margin:0 0 10px; }
+    .practice .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(520px,100%);
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .no{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.10) !important;
+      color:rgba(255,220,220,.95) !important;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Tablas de Verdad</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 1 (Lógica Matemática)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Tablas de Verdad</h1>
+        <p class="subtitle">Aprende a evaluar proposiciones compuestas con método y sin sufrir (tanto).</p>
 
-<article class="topic">
-  <h2>Proposiciones y conectivos</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t1.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t3.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
-<article class="topic">
-  <h2>Tablas de verdad</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tablas de verdad" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <h2>1) ¿Qué es una tabla de verdad?</h2>
+        <p>
+          Una <strong>tabla de verdad</strong> es una tabla donde escribimos <strong>todas las combinaciones</strong>
+          posibles de valores de verdad (V/F) de las proposiciones y calculamos el resultado final de una proposición compuesta.
+        </p>
 
+        <div class="mini-note">
+          <strong>Idea clave:</strong> si tienes <strong>n</strong> proposiciones simples (p, q, r, ...), entonces hay
+          <strong>2ⁿ</strong> combinaciones posibles.
+          <br>Ejemplo: con p y q hay 2² = 4 filas.
+        </div>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <h2 style="margin-top:22px;">2) Orden de filas (p y q)</h2>
+        <p>Para dos proposiciones, el orden más usado es:</p>
+
+        <div class="truth-wrap">
+          <table class="truth-table" aria-label="Combinaciones de p y q">
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+              <tr><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td></tr>
+              <tr><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td></tr>
+              <tr><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2 style="margin-top:22px;">3) Tablas básicas de conectores</h2>
+        <p>Estas reglas son el corazón del tema:</p>
+
+        <div class="truth-wrap">
+          <p class="muted" style="margin:0 0 8px;">Selecciona un conector para ver su tabla:</p>
+
+          <div class="truth-controls">
+            <select id="opSel" class="select" aria-label="Seleccionar conector lógico">
+              <option value="and">p ∧ q (y)</option>
+              <option value="or">p ∨ q (o)</option>
+              <option value="imp">p → q (si…entonces)</option>
+              <option value="iff">p ↔ q (si y solo si)</option>
+              <option value="notp">¬p (no p)</option>
+            </select>
+
+            <button class="btn" id="btnFill" type="button">Llenar</button>
+            <button class="btn" id="btnAnim" type="button">Animar</button>
+          </div>
+
+          <table class="truth-table" aria-label="Tabla de verdad del conector">
+            <thead>
+              <tr>
+                <th>p</th>
+                <th>q</th>
+                <th id="resTitle">Resultado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td id="p0"></td><td id="q0"></td><td id="r0"></td>
+              </tr>
+              <tr>
+                <td id="p1"></td><td id="q1"></td><td id="r1"></td>
+              </tr>
+              <tr>
+                <td id="p2"></td><td id="q2"></td><td id="r2"></td>
+              </tr>
+              <tr>
+                <td id="p3"></td><td id="q3"></td><td id="r3"></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="mini-note" style="margin-top:12px;">
+            <strong>Recordatorio PRO:</strong><br>
+            • <strong>p ∧ q</strong> solo es V cuando ambos son V.<br>
+            • <strong>p ∨ q</strong> es V cuando al menos uno es V.<br>
+            • <strong>p → q</strong> solo es F cuando p=V y q=F (sí, esa fila es la “trampa”).<br>
+            • <strong>p ↔ q</strong> es V cuando p y q son iguales.<br>
+            • <strong>¬p</strong> invierte V ↔ F.
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">4) ¿Cómo resolver una proposición compuesta?</h2>
+        <p>Para una proposición como <strong>(p ∧ q) → ¬p</strong>:</p>
+        <ol class="steps">
+          <li>Escribe las columnas de p y q (4 filas).</li>
+          <li>Calcula primero lo que está “adentro”: <strong>p ∧ q</strong>.</li>
+          <li>Calcula <strong>¬p</strong>.</li>
+          <li>Con esas columnas, evalúa el conectivo final: <strong>(p ∧ q) → ¬p</strong>.</li>
+        </ol>
+
+        <div class="mini-note">
+          <strong>Tip docente:</strong> “De adentro hacia afuera”. Si lo hacen al revés, la tabla los castiga.
+        </div>
+
+        <h2 style="margin-top:22px;">5) Práctica rápida (verificador)</h2>
+        <p>
+          Escribe el resultado final (columna de salida) para <strong>p → q</strong> en el orden
+          (VV, VF, FV, FF). Usa solo V y F. Ejemplo: <span class="pill">V F V F</span>
+        </p>
+
+        <div class="practice">
+          <h3>Verificador</h3>
+          <input id="ans" class="input" placeholder="Ejemplo: V V F V" aria-label="Respuesta en V y F" />
+          <div class="row">
+            <button class="btn" id="btnCheck" type="button">Revisar</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+            <span class="pill" id="miniScore">Intentos: 0</span>
+          </div>
+          <div class="feedback" id="fbCheck"></div>
+        </div>
+
+        <!-- ✅ Video (opcional): si aún no tienes uno, puedes comentar este bloque -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2>6) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Tablas de verdad - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Construir tablas de verdad para conectores y evaluar proposiciones compuestas.
+              </p>
+
+              <ul class="video-points">
+                <li>Orden correcto de filas (2ⁿ combinaciones).</li>
+                <li>Reglas de ∧, ∨, →, ↔ y ¬.</li>
+                <li>Resolver expresiones “de adentro hacia afuera”.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t3.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para tabla animada + verificador -->
+  <script>
+    // =========================
+    // TABLA DE VERDAD (animada)
+    // =========================
+    const combos = [
+      {p:true,  q:true},
+      {p:true,  q:false},
+      {p:false, q:true},
+      {p:false, q:false}
+    ];
+
+    function vf(v){
+      return `<span class="vf ${v ? "v":"f"}">${v ? "V":"F"}</span>`;
+    }
+
+    function opTitle(op){
+      switch(op){
+        case "and": return "p ∧ q";
+        case "or":  return "p ∨ q";
+        case "imp": return "p → q";
+        case "iff": return "p ↔ q";
+        case "notp":return "¬p";
+        default:    return "Resultado";
+      }
+    }
+
+    function opResult(op, p, q){
+      switch(op){
+        case "and": return p && q;
+        case "or":  return p || q;
+        case "imp": return (!p) || q;  // p -> q
+        case "iff": return p === q;    // p <-> q
+        case "notp":return !p;         // ¬p
+      }
+    }
+
+    function fillTable(){
+      const op = document.getElementById("opSel").value;
+      document.getElementById("resTitle").textContent = opTitle(op);
+
+      combos.forEach((c, i)=>{
+        document.getElementById("p"+i).innerHTML = vf(c.p);
+        document.getElementById("q"+i).innerHTML = vf(c.q);
+        document.getElementById("r"+i).innerHTML = vf(opResult(op, c.p, c.q));
+      });
+    }
+
+    async function animateTable(){
+      fillTable();
+      const op = document.getElementById("opSel").value;
+
+      for(let i=0;i<combos.length;i++){
+        const ids = ["p"+i,"q"+i,"r"+i];
+        ids.forEach(id => document.getElementById(id).classList.add("cell-flash"));
+
+        // re-eval result for safety
+        document.getElementById("r"+i).innerHTML = vf(opResult(op, combos[i].p, combos[i].q));
+
+        await new Promise(r=>setTimeout(r, 320));
+        ids.forEach(id => document.getElementById(id).classList.remove("cell-flash"));
+        await new Promise(r=>setTimeout(r, 80));
+      }
+    }
+
+    document.getElementById("btnFill").addEventListener("click", fillTable);
+    document.getElementById("btnAnim").addEventListener("click", animateTable);
+    document.getElementById("opSel").addEventListener("change", fillTable);
+
+    fillTable();
+
+    // =========================
+    // PRÁCTICA: verificador p → q
+    // Orden: VV, VF, FV, FF
+    // Resultado correcto: V F V V
+    // =========================
+    let tries = 0;
+    const correct = "V F V V";
+
+    function normalizeVF(s){
+      return s
+        .toUpperCase()
+        .replace(/[^VF\s]/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    }
+
+    function check(){
+      tries++;
+      document.getElementById("miniScore").textContent = `Intentos: ${tries}`;
+      const inp = normalizeVF(document.getElementById("ans").value);
+
+      const fb = document.getElementById("fbCheck");
+      fb.classList.remove("ok","no");
+
+      if(inp === correct){
+        fb.classList.add("ok");
+        fb.textContent = `✅ Correcto: ${correct}. (Condicional dominado)`;
+      } else {
+        fb.classList.add("no");
+        fb.textContent = `❌ Aún no. Pista: solo es F cuando p=V y q=F.`;
+      }
+    }
+
+    function clearAns(){
+      document.getElementById("ans").value = "";
+      const fb = document.getElementById("fbCheck");
+      fb.classList.remove("ok","no");
+      fb.textContent = "";
+    }
+
+    document.getElementById("btnCheck").addEventListener("click", check);
+    document.getElementById("btnClear").addEventListener("click", clearAns);
+  </script>
 </body>
 </html>
+
