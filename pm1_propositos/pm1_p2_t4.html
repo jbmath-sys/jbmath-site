@@ -3,53 +3,640 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 2 (Aritmatica) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Concepto y uso del ábaco | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    /* ===== Abaco demo ===== */
+    .abaco{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .abaco .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(520px,100%);
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+
+    .rod-wrap{
+      margin-top:12px;
+      display:grid;
+      grid-template-columns: repeat(4, minmax(0,1fr));
+      gap:12px;
+    }
+    @media (max-width: 860px){
+      .rod-wrap{ grid-template-columns: 1fr 1fr; }
+    }
+    .rod{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      border-radius:14px;
+      padding:12px;
+      position:relative;
+      overflow:hidden;
+      min-height:108px;
+    }
+    .rod .lbl{
+      font-size:12px;
+      color:var(--muted);
+      margin:0 0 8px;
+    }
+    .beads{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .bead{
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.08);
+      box-shadow: var(--shadow2);
+    }
+    .bead.on{
+      border-color: rgba(34,197,94,.55);
+      background: rgba(34,197,94,.16);
+    }
+
+    .legend{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .dot{
+      width:12px;height:12px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.08);
+      display:inline-block;
+      vertical-align:middle;
+      margin-right:6px;
+    }
+    .dot.on{
+      border-color: rgba(34,197,94,.55);
+      background: rgba(34,197,94,.16);
+    }
+
+    /* ===== Mini quiz ===== */
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Ábaco</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 2 (Arimetica)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Concepto y uso del ábaco</h1>
+        <p class="subtitle">El “hardware” original para contar y calcular: lugar, valor y movimientos.</p>
 
-<article class="topic">
-  <h2>Concepto y uso del ábaco</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t7.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t9.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Qué es un ábaco?</h2>
+        <p>
+          El <strong>ábaco</strong> es un instrumento de cálculo que representa números usando <strong>cuentas</strong>
+          (bolitas) sobre <strong>varillas</strong> o líneas. Su idea central es el <strong>valor posicional</strong>:
+          cada varilla representa unidades, decenas, centenas, etc.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>En corto:</strong> el ábaco “vuelve visible” lo que pasa cuando sumas o restas: llevadas, préstamos y posiciones.
+        </div>
+
+        <h2 style="margin-top:22px;">2) ¿Para qué sirve?</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>✅ Contar y representar números</h3>
+            <ul>
+              <li>Ver unidades, decenas, centenas...</li>
+              <li>Entender el papel del cero como “sin cuentas” en una posición.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>✅ Calcular</h3>
+            <ul>
+              <li>Sumas y restas (con llevadas/préstamos).</li>
+              <li>Multiplicaciones y divisiones (con técnicas específicas).</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">3) Idea clave: valor posicional</h2>
+        <p>
+          En un ábaco decimal simple:
+        </p>
+        <ul>
+          <li>Varilla 1 = <strong>unidades</strong></li>
+          <li>Varilla 2 = <strong>decenas</strong></li>
+          <li>Varilla 3 = <strong>centenas</strong></li>
+          <li>Varilla 4 = <strong>millares</strong></li>
+        </ul>
+
+        <div class="mini-note">
+          <strong>Regla:</strong> 10 cuentas en una varilla se convierten en 1 cuenta en la varilla de la izquierda.
+          (La famosa “llevada”).
+        </div>
+
+        <h2 style="margin-top:22px;">4) Demo interactiva: “Ábaco” (simulación sencilla)</h2>
+        <p>
+          Escribe un número (0 a 9999) y mira cómo quedaría en un ábaco decimal por posiciones.
+          <span class="tag">No es un soroban completo</span> — es una versión didáctica para entender posiciones.
+        </p>
+
+        <div class="abaco" aria-label="Demo de ábaco decimal">
+          <div class="row">
+            <input id="num" class="input" placeholder="Ejemplo: 507 o 2026" aria-label="Número para representar en ábaco" />
+            <button class="btn" id="btnShow" type="button">Mostrar en ábaco</button>
+            <button class="btn" id="btnRnd" type="button">Aleatorio</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+          </div>
+
+          <div class="legend">
+            <span><span class="dot on"></span> cuenta activa</span>
+            <span><span class="dot"></span> cuenta “vacía”</span>
+            <span class="pill" id="pillRead">Lectura: —</span>
+          </div>
+
+          <div class="feedback" id="fb"></div>
+
+          <!-- 4 varillas -->
+          <div class="rod-wrap" id="rodWrap" aria-label="Varillas del ábaco">
+            <!-- se llena con JS -->
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">5) ¿Cómo “se lee” un ábaco?</h2>
+        <div class="panel">
+          <p>
+            Se lee de izquierda a derecha (millares → unidades). El número que ves es la suma de:
+            <strong>(millares × 1000) + (centenas × 100) + (decenas × 10) + (unidades × 1)</strong>.
+          </p>
+          <ul>
+            <li>Si una varilla no tiene cuentas, esa posición vale <strong>0</strong>.</li>
+            <li>Eso explica por qué el cero es fundamental en el sistema posicional.</li>
+          </ul>
+        </div>
+
+        <h2 style="margin-top:22px;">6) Mini-quiz</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">7) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Concepto y uso del ábaco - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Representar números en un ábaco y relacionarlo con el valor posicional.
+              </p>
+
+              <ul class="video-points">
+                <li>Qué es y para qué sirve el ábaco.</li>
+                <li>Varillas: unidades, decenas, centenas, millares.</li>
+                <li>Llevadas: 10 en una varilla → 1 en la izquierda.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t9.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para “ábaco” + quiz -->
+  <script>
+    // =========================
+    // Abaco: render por posiciones (0..9999)
+    // =========================
+    const rods = [
+      { key:"th", label:"Millares (×1000)" },
+      { key:"hu", label:"Centenas (×100)" },
+      { key:"te", label:"Decenas (×10)" },
+      { key:"un", label:"Unidades (×1)" },
+    ];
+
+    function createRods(){
+      const wrap = document.getElementById("rodWrap");
+      wrap.innerHTML = "";
+      rods.forEach(r=>{
+        const div = document.createElement("div");
+        div.className = "rod";
+        div.innerHTML = `
+          <p class="lbl">${r.label}</p>
+          <div class="beads" id="beads-${r.key}" aria-label="${r.label}"></div>
+        `;
+        wrap.appendChild(div);
+      });
+
+      // 10 cuentas por varilla (0..9)
+      rods.forEach(r=>{
+        const beads = document.getElementById(`beads-${r.key}`);
+        beads.innerHTML = "";
+        for(let i=0;i<10;i++){
+          const b = document.createElement("span");
+          b.className = "bead";
+          beads.appendChild(b);
+        }
+      });
+    }
+
+    function setBeads(key, amount){
+      const beads = document.getElementById(`beads-${key}`).querySelectorAll(".bead");
+      beads.forEach((b, idx)=>{
+        if(idx < amount) b.classList.add("on");
+        else b.classList.remove("on");
+      });
+    }
+
+    function parseInput(){
+      const raw = document.getElementById("num").value.trim();
+      const fb = document.getElementById("fb");
+      fb.classList.remove("warn");
+      fb.textContent = "";
+
+      if(!raw){
+        fb.classList.add("warn");
+        fb.textContent = "Escribe un número primero 🙂";
+        return null;
+      }
+      if(!/^\d+$/.test(raw)){
+        fb.classList.add("warn");
+        fb.textContent = "Usa solo dígitos (0-9). Ejemplo: 507, 2026.";
+        return null;
+      }
+      const n = Number(raw);
+      if(n > 9999){
+        fb.classList.add("warn");
+        fb.textContent = "Por ahora usa números de 0 a 9999 para que se vea claro.";
+        return null;
+      }
+      return n;
+    }
+
+    function showAbaco(){
+      const n = parseInput();
+      if(n === null) return;
+
+      const th = Math.floor(n / 1000);
+      const hu = Math.floor((n % 1000) / 100);
+      const te = Math.floor((n % 100) / 10);
+      const un = n % 10;
+
+      setBeads("th", th);
+      setBeads("hu", hu);
+      setBeads("te", te);
+      setBeads("un", un);
+
+      document.getElementById("pillRead").textContent = `Lectura: ${th}${hu}${te}${un} (=${n})`;
+
+      const fb = document.getElementById("fb");
+      fb.classList.remove("warn");
+      fb.innerHTML = `
+        • Millares: <strong>${th}</strong> → ${th}×1000 = <strong>${th*1000}</strong><br>
+        • Centenas: <strong>${hu}</strong> → ${hu}×100 = <strong>${hu*100}</strong><br>
+        • Decenas: <strong>${te}</strong> → ${te}×10 = <strong>${te*10}</strong><br>
+        • Unidades: <strong>${un}</strong> → ${un}×1 = <strong>${un}</strong><br><br>
+        <span class="muted">Suma total: ${th*1000 + hu*100 + te*10 + un}.</span>
+      `;
+    }
+
+    function rnd(){
+      const n = Math.floor(Math.random()*10000);
+      document.getElementById("num").value = String(n);
+      showAbaco();
+    }
+
+    function clearAll(){
+      document.getElementById("num").value = "";
+      ["th","hu","te","un"].forEach(k=> setBeads(k, 0));
+      document.getElementById("pillRead").textContent = "Lectura: —";
+      const fb = document.getElementById("fb");
+      fb.classList.remove("warn");
+      fb.textContent = "";
+    }
+
+    document.getElementById("btnShow").addEventListener("click", showAbaco);
+    document.getElementById("btnRnd").addEventListener("click", rnd);
+    document.getElementById("btnClear").addEventListener("click", clearAll);
+
+    createRods();
+
+    // =========================
+    // Mini-quiz
+    // =========================
+    const quizData = [
+      {
+        q: "¿Qué representa cada varilla en un ábaco decimal?",
+        opts: [
+          {t:"Una posición (unidades, decenas, centenas…)", ok:true, why:"Correcto: cada varilla es una posición decimal."},
+          {t:"Un color distinto nada más", ok:false, why:"Puede tener colores, pero lo importante es la posición."},
+          {t:"Una operación (suma, resta…)", ok:false, why:"Las operaciones se hacen con movimientos, no con varillas dedicadas."}
+        ]
+      },
+      {
+        q: "¿Qué significa una varilla sin cuentas activas?",
+        opts: [
+          {t:"Que esa posición vale 0", ok:true, why:"Correcto: es el “cero” en esa posición."},
+          {t:"Que el ábaco está descompuesto", ok:false, why:"No: solo indica valor 0 en esa posición."}
+        ]
+      },
+      {
+        q: "En un ábaco decimal, 10 cuentas en una varilla equivalen a:",
+        opts: [
+          {t:"1 cuenta en la varilla de la izquierda", ok:true, why:"Exacto: es la llevada."},
+          {t:"10 cuentas en la misma varilla siempre", ok:false, why:"Se hace el cambio por posición (llevada)."}
+        ]
+      },
+      {
+        q: "¿Para qué es útil el ábaco en el aprendizaje?",
+        opts: [
+          {t:"Para visualizar el valor posicional y las llevadas", ok:true, why:"Correcto: lo hace visible y manipulable."},
+          {t:"Solo para decorar clases", ok:false, why:"Se ve bonito, pero su fuerza es didáctica y práctica."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fbq-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fbq-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya puedes leer ábacos como si fueran memes 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Ya casi eres “maestro de varillas y cuentas”.";
+        else g.textContent = "Repite: el ábaco es simple… pero poderoso (como el cero).";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
