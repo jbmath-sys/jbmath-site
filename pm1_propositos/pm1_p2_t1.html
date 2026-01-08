@@ -3,53 +3,529 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 2 (Aritmatica) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Sistemas de conteo en civilizaciones antiguas | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .cardline{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+      align-items:center;
+    }
+
+    .truth-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .truth-table th, .truth-table td{
+      text-align:left;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      vertical-align:top;
+      line-height:1.55;
+    }
+    .truth-table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+      text-align:left;
+    }
+    .truth-table tr:last-child td{ border-bottom:none; }
+    .truth-table td:last-child, .truth-table th:last-child{ border-right:none; }
+
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Sistemas de conteo antiguos</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 2 (Arimetica)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Sistemas de conteo en civilizaciones antiguas</h1>
+        <p class="subtitle">De Mesopotamia a Mesoamérica: cómo contar cambió la historia (y nuestras tareas).</p>
 
-<article class="topic">
-  <h2>Cocepto de número y número naturales</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t4.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t6.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Por qué existen los sistemas de conteo?</h2>
+        <p>
+          Antes de calculadoras y hojas de Excel, las civilizaciones necesitaban contar para:
+          <strong>comercio</strong>, <strong>impuestos</strong>, <strong>agricultura</strong>, <strong>astronomía</strong> y <strong>registro de tiempo</strong>.
+          Cada cultura inventó símbolos y reglas para representar cantidades… y algunas ideas siguen vivas hoy.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Idea clave:</strong> un sistema de numeración no es solo “números bonitos”, es una herramienta para organizar información.
+        </div>
+
+        <h2 style="margin-top:22px;">2) Resumen comparativo</h2>
+
+        <table class="truth-table" aria-label="Tabla comparativa de sistemas de conteo">
+          <thead>
+            <tr>
+              <th>Civilización</th>
+              <th>Base / idea</th>
+              <th>¿Posicional?</th>
+              <th>Dato clave</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Mesopotamia (Sumer/Babilonia)</strong></td>
+              <td>Base <strong>60</strong> (sexagesimal)</td>
+              <td><strong>Sí</strong> (en su etapa babilónica)</td>
+              <td>De aquí viene dividir el tiempo: <strong>60 s</strong>, <strong>60 min</strong> y el círculo <strong>360°</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Egipto</strong></td>
+              <td>Base <strong>10</strong> (decimal)</td>
+              <td><strong>No</strong></td>
+              <td>Símbolos distintos para 1, 10, 100, 1000… se repetían para formar números.</td>
+            </tr>
+            <tr>
+              <td><strong>América (Mesoamérica)</strong></td>
+              <td>Base <strong>20</strong> (vigesimal)</td>
+              <td><strong>Sí</strong> (Maya)</td>
+              <td>Sistema maya con puntos y barras; incluye un símbolo para el <strong>cero</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>India</strong></td>
+              <td>Base <strong>10</strong> (decimal)</td>
+              <td><strong>Sí</strong></td>
+              <td>Desarrollo del sistema decimal moderno y del <strong>cero como número</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Arabia (mundo islámico)</strong></td>
+              <td>Difusión del sistema decimal</td>
+              <td><strong>Sí</strong></td>
+              <td>Transmitieron a Europa los “números indo-arábigos” y métodos de cálculo.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 style="margin-top:22px;">3) Mesopotamia (base 60)</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>¿Cómo contaban?</h3>
+            <ul>
+              <li>Usaron símbolos en tablillas de arcilla.</li>
+              <li>La base 60 es útil porque 60 tiene muchos divisores (2,3,4,5,6...).</li>
+              <li>Facilitaba fracciones en comercio y astronomía.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>¿Qué nos dejó?</h3>
+            <div class="cardline">
+              <span class="tag">🕒 60 segundos</span>
+              <span class="tag">🕒 60 minutos</span>
+              <span class="tag">📐 360°</span>
+            </div>
+            <p style="margin-top:10px;">
+              Hoy seguimos usando herencias babilónicas cada vez que vemos un reloj… o cuando el profe dice “tienen 5 minutos” 😄
+            </p>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">4) Egipto (decimal no posicional)</h2>
+        <div class="panel">
+          <p>
+            Los egipcios usaban símbolos diferentes para <strong>1, 10, 100, 1000</strong>, etc.
+            Para escribir un número, repetían símbolos.
+          </p>
+          <ul>
+            <li>Ejemplo conceptual: para 300 usaban “3 símbolos de 100”.</li>
+            <li>Es claro de leer… pero escribir números grandes era tardado.</li>
+          </ul>
+        </div>
+
+        <h2 style="margin-top:22px;">5) América (vigesimal) + Olmecas y Mayas</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>Sistema vigesimal (base 20)</h3>
+            <p>
+              Muchas culturas mesoamericanas contaban en base 20.
+              Una explicación común es el conteo con <strong>dedos de manos y pies</strong> (20 en total).
+            </p>
+            <ul>
+              <li>Los mayas usaban <strong>puntos</strong> (1) y <strong>barras</strong> (5).</li>
+              <li>Su sistema era <strong>posicional</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>El cero en Olmeca y Maya</h3>
+            <p>
+              El <strong>cero</strong> es una idea poderosa porque sirve como:
+            </p>
+            <ul>
+              <li><strong>Marcador de posición</strong> (para distinguir 21 de 201, por ejemplo).</li>
+              <li><strong>Número</strong> con el que puedes operar (sumar, restar, etc.).</li>
+              <li>Base para cálculos avanzados en calendarios y astronomía.</li>
+            </ul>
+            <div class="mini-note">
+              <strong>Importancia:</strong> sin cero, el sistema posicional se vuelve un caos.
+              Con cero, escribir y calcular números grandes se vuelve mucho más sencillo.
+            </div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">6) India y Arabia: camino al sistema que usamos hoy</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>India</h3>
+            <p>
+              En India se consolidó el sistema decimal posicional y el uso del <strong>cero</strong>
+              como una idea matemática clave (no solo un “hueco”).
+            </p>
+            <ul>
+              <li>Facilitó algoritmos de suma, resta, multiplicación y división.</li>
+              <li>Permitió un desarrollo más fuerte del álgebra y aritmética.</li>
+            </ul>
+          </div>
+          <div class="panel">
+            <h3>Arabia (mundo islámico)</h3>
+            <p>
+              El mundo islámico fue un gran puente: estudió, mejoró y difundió el conocimiento matemático hacia Europa.
+            </p>
+            <ul>
+              <li>Difusión de los números “indo-arábigos”.</li>
+              <li>Impulso al álgebra y métodos de cálculo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">7) Práctica rápida (mini-quiz)</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">8) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Sistemas de conteo - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Reconocer cómo diferentes civilizaciones representaban números y por qué el cero fue una revolución.
+              </p>
+
+              <ul class="video-points">
+                <li>Base 60 (Mesopotamia) y su impacto actual.</li>
+                <li>Sistema decimal egipcio no posicional.</li>
+                <li>Base 20 (Mesoamérica) y el cero en el sistema maya.</li>
+                <li>India y Arabia como base del sistema moderno.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t6.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para mini-quiz -->
+  <script>
+    const quizData = [
+      {
+        q: "¿Qué civilización usó base 60 y nos dejó los 60 minutos?",
+        opts: [
+          {t:"Mesopotamia (Babilonia)", ok:true, why:"Correcto: base 60 y herencia en tiempo y ángulos."},
+          {t:"Egipto", ok:false, why:"Egipto fue decimal y no posicional."},
+          {t:"Maya", ok:false, why:"Maya es base 20 y sistema con puntos y barras."}
+        ]
+      },
+      {
+        q: "¿Qué significa que un sistema sea “posicional”?",
+        opts: [
+          {t:"Que el valor depende del lugar (posición) del dígito", ok:true, why:"Exacto: como en 205, el 2 vale 200 por su posición."},
+          {t:"Que solo usa base 10", ok:false, why:"No necesariamente; puede ser base 60, 20, 10, etc."},
+          {t:"Que no tiene símbolo para el cero", ok:false, why:"Al contrario: el cero ayuda muchísimo al sistema posicional."}
+        ]
+      },
+      {
+        q: "¿Por qué el cero es importante en un sistema posicional?",
+        opts: [
+          {t:"Porque sirve como marcador de posición", ok:true, why:"Sí: ayuda a distinguir 21, 201, 2001, etc."},
+          {t:"Porque solo se usa para contar objetos", ok:false, why:"No: su mayor poder está en el valor posicional y operaciones."},
+          {t:"Porque reemplaza a todos los números", ok:false, why:"Cero no reemplaza, complementa el sistema."}
+        ]
+      },
+      {
+        q: "¿Qué cultura usó base 20 y representó números con puntos y barras?",
+        opts: [
+          {t:"Maya", ok:true, why:"Correcto: puntos (1) y barras (5), base 20."},
+          {t:"India", ok:false, why:"India desarrolló el sistema decimal posicional moderno."},
+          {t:"Arabia", ok:false, why:"Arabia difundió el sistema indo-arábigo, no base 20."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fb-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fb-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya puedes viajar por la historia sin perderte… ni perder el cero 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Te falta poquito para modo arqueólogo matemático.";
+        else g.textContent = "Repite el quiz: la historia se aprende mejor cuando la cuentas (literalmente).";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
