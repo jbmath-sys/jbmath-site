@@ -3,70 +3,450 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 4 | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Proposiciones condicionales y bicondicionales | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .sym{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.90);
+    }
+
+    .truth-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .truth-table th, .truth-table td{
+      text-align:center;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+    }
+    .truth-table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .truth-table tr:last-child td{ border-bottom:none; }
+    .truth-table td:last-child, .truth-table th:last-child{ border-right:none; }
+
+    .vf{
+      display:inline-flex;
+      min-width:32px;
+      justify-content:center;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      font-weight:900;
+    }
+    .vf.v{ border-color: rgba(34,197,94,.55); background: rgba(34,197,94,.10); }
+    .vf.f{ border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.10); }
+
+    .builder{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .builder .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .select{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .no{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.10) !important;
+      color:rgba(255,220,220,.95) !important;
+    }
+
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Condicionales y bicondicionales</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 1 (Lógica Matemática)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Proposiciones condicionales y bicondicionales</h1>
+        <p class="subtitle">Domina p → q y p ↔ q con reglas claras y práctica interactiva.</p>
 
-<article class="topic">
-  <h2>Proposiciones y conectivos</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t3.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t5.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
-<article class="topic">
-  <h2>Tablas de verdad</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tablas de verdad" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <h2>1) Condicional (→): “si… entonces”</h2>
+        <p>
+          Un <strong>condicional</strong> se escribe como <span class="sym">p → q</span> y se lee:
+          <strong>“Si p, entonces q”</strong>.
+        </p>
 
+        <div class="two-col">
+          <div class="panel">
+            <h3>Ejemplo cotidiano</h3>
+            <p>
+              p: “Estudio”<br>
+              q: “Apruebo”<br>
+              <span class="sym">p → q</span>: “Si estudio, entonces apruebo.”
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Regla clave</h3>
+            <p>
+              <strong>p → q</strong> solo es <strong>Falsa</strong> cuando:
+              <br><strong>p es V</strong> y <strong>q es F</strong>.
+            </p>
+            <p class="muted" style="margin:0;">
+              Esa fila es la famosa “trampa” del condicional.
+            </p>
+          </div>
+        </div>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Memoria rápida:</strong> “Promesa rota”. Si prometiste (p=V) pero no cumpliste (q=F), entonces es F.
+          En cualquier otro caso, es V. La lógica no juzga, solo registra el drama 😄
+        </div>
+
+        <table class="truth-table" aria-label="Tabla de verdad del condicional">
+          <thead>
+            <tr>
+              <th>p</th>
+              <th>q</th>
+              <th>p → q</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td></tr>
+          </tbody>
+        </table>
+
+        <h2 style="margin-top:22px;">2) Bicondicional (↔): “si y solo si”</h2>
+        <p>
+          Un <strong>bicondicional</strong> se escribe como <span class="sym">p ↔ q</span> y se lee:
+          <strong>“p si y solo si q”</strong>.
+        </p>
+
+        <div class="two-col">
+          <div class="panel">
+            <h3>Idea principal</h3>
+            <p>
+              <strong>p ↔ q</strong> es <strong>Verdadera</strong> cuando <strong>p</strong> y <strong>q</strong>
+              tienen el mismo valor (ambas V o ambas F).
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Ejemplo matemático</h3>
+            <p>
+              p: “Un número es par”<br>
+              q: “Es divisible entre 2”<br>
+              <span class="sym">p ↔ q</span>: “Un número es par si y solo si es divisible entre 2.”
+            </p>
+          </div>
+        </div>
+
+        <div class="mini-note">
+          <strong>Truco:</strong> piensa “acuerdo total”. Si están de acuerdo (mismo valor), es V. Si se contradicen, es F.
+        </div>
+
+        <table class="truth-table" aria-label="Tabla de verdad del bicondicional">
+          <thead>
+            <tr>
+              <th>p</th>
+              <th>q</th>
+              <th>p ↔ q</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td></tr>
+          </tbody>
+        </table>
+
+        <h2 style="margin-top:22px;">3) Práctica interactiva: evalúa → y ↔</h2>
+        <p>Elige valores para p y q, selecciona el conector y mira el resultado (con explicación).</p>
+
+        <div class="builder" aria-label="Evaluador de condicional y bicondicional">
+          <div class="row">
+            <span class="pill">p</span>
+            <select id="pSel" class="select" aria-label="Valor de p">
+              <option value="V">V</option>
+              <option value="F">F</option>
+            </select>
+
+            <span class="pill">Conector</span>
+            <select id="opSel" class="select" aria-label="Conector">
+              <option value="imp">→ (si… entonces)</option>
+              <option value="iff">↔ (si y solo si)</option>
+            </select>
+
+            <span class="pill">q</span>
+            <select id="qSel" class="select" aria-label="Valor de q">
+              <option value="V">V</option>
+              <option value="F">F</option>
+            </select>
+
+            <button class="btn" id="btnEval" type="button">Evaluar</button>
+          </div>
+
+          <div class="feedback" id="fb"></div>
+        </div>
+
+        <div class="mini-note">
+          <strong>Extra útil:</strong><br>
+          • <span class="sym">p ↔ q</span> es lo mismo que decir: <strong>(p → q) ∧ (q → p)</strong><br>
+          O sea: “p implica q” y “q implica p” al mismo tiempo.
+        </div>
+
+        <!-- ✅ Video (opcional): cambia ID cuando tengas tu video -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">4) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Condicionales y bicondicionales - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Interpretar y evaluar correctamente <strong>p → q</strong> y <strong>p ↔ q</strong> con tablas de verdad.
+              </p>
+
+              <ul class="video-points">
+                <li>Identificar la única fila falsa del condicional.</li>
+                <li>Reconocer el “acuerdo total” del bicondicional.</li>
+                <li>Relacionar ↔ con (→) en ambas direcciones.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t5.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para evaluar → y ↔ -->
+  <script>
+    function evalOp(p, op, q){
+      const P = (p === "V");
+      const Q = (q === "V");
+
+      if(op === "imp"){ // p -> q
+        return ((!P) || Q) ? "V" : "F";
+      }
+      if(op === "iff"){ // p <-> q
+        return (P === Q) ? "V" : "F";
+      }
+      return "F";
+    }
+
+    function opText(op){
+      return op === "imp" ? "→ (si… entonces)" : "↔ (si y solo si)";
+    }
+
+    function explain(p, op, q, r){
+      const P = (p === "V");
+      const Q = (q === "V");
+
+      if(op === "imp"){
+        if(P && !Q) return "Condicional: es F solo cuando p=V y q=F (promesa rota).";
+        return "Condicional: en cualquier otro caso es V.";
+      }else{
+        if(P === Q) return "Bicondicional: es V porque p y q tienen el mismo valor.";
+        return "Bicondicional: es F porque p y q tienen valores distintos.";
+      }
+    }
+
+    document.getElementById("btnEval").addEventListener("click", () => {
+      const p = document.getElementById("pSel").value;
+      const q = document.getElementById("qSel").value;
+      const op = document.getElementById("opSel").value;
+
+      const r = evalOp(p, op, q);
+
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","no","warn");
+
+      // estilo: en condicional queremos resaltar el caso "trampa"
+      if(op === "imp" && p === "V" && q === "F"){
+        fb.classList.add("warn");
+      } else {
+        fb.classList.add(r === "V" ? "ok" : "no");
+      }
+
+      fb.innerHTML = `
+        <strong>Resultado:</strong> (${p}) ${opText(op)} (${q}) = <strong>${r}</strong><br>
+        <span class="muted">${explain(p, op, q, r)}</span>
+      `;
+    });
+  </script>
 </body>
 </html>
