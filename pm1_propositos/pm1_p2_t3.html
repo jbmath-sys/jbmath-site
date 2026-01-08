@@ -3,53 +3,573 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 2 (Aritmatica) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Leonardo de Pisa y el sistema numeral indoarábigo | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      vertical-align:top;
+      line-height:1.55;
+    }
+    .table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+      text-align:left;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .table td:last-child, .table th:last-child{ border-right:none; }
+
+    .demo{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .demo .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(520px,100%);
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Leonardo de Pisa e indoarábigos</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 2 (Arimetica)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Leonardo de Pisa y el sistema numeral indoarábigo</h1>
+        <p class="subtitle">Cómo Europa cambió de “números romanos” a un sistema posicional con cero.</p>
 
-<article class="topic">
-  <h2>Leonardo de Pisa y el sistema numeral indoarábigo</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t6.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t8.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Quién fue Leonardo de Pisa?</h2>
+        <p>
+          <strong>Leonardo de Pisa</strong>, más conocido como <strong>Fibonacci</strong>, fue un matemático italiano
+          (Edad Media) que ayudó a difundir en Europa el <strong>sistema numeral indoarábigo</strong>.
+          Su “superpoder” fue explicar por qué este sistema era mucho más práctico para hacer cuentas que los números romanos.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Dato rápido:</strong> Fibonacci se hizo famoso por su libro <strong>Liber Abaci</strong> (1202),
+          donde mostró métodos de cálculo útiles para comercio.
+        </div>
+
+        <h2 style="margin-top:22px;">2) ¿Qué es el sistema numeral indoarábigo?</h2>
+        <p>
+          Es el sistema que usamos hoy para escribir números con los dígitos:
+          <span class="mono">0, 1, 2, 3, 4, 5, 6, 7, 8, 9</span>.
+          Sus dos ideas clave son:
+        </p>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>✅ Posicional</h3>
+            <p>El valor del dígito depende de su lugar.</p>
+            <ul>
+              <li>En <span class="mono">507</span>, el 5 vale <strong>500</strong>.</li>
+              <li>En <span class="mono">75</span>, el 7 vale <strong>70</strong>.</li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>✅ Cero (0)</h3>
+            <p>Sirve como marcador de posición y como número.</p>
+            <ul>
+              <li><span class="mono">205</span> no es lo mismo que <span class="mono">25</span>.</li>
+              <li>Permite algoritmos más claros de suma, resta, etc.</li>
+            </ul>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">3) ¿Por qué fue una revolución en Europa?</h2>
+        <p>
+          Antes, en Europa se usaban principalmente <strong>números romanos</strong> (I, V, X, L, C, D, M),
+          que son buenos para escribir… pero malos para calcular rápido.
+        </p>
+
+        <table class="table" aria-label="Comparación entre números romanos e indoarábigos">
+          <thead>
+            <tr>
+              <th>Aspecto</th>
+              <th>Números romanos</th>
+              <th>Indoarábigos</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Escritura</strong></td>
+              <td>Ej. <span class="mono">MMXXVI</span></td>
+              <td>Ej. <span class="mono">2026</span></td>
+            </tr>
+            <tr>
+              <td><strong>¿Es posicional?</strong></td>
+              <td>No</td>
+              <td>Sí</td>
+            </tr>
+            <tr>
+              <td><strong>¿Tiene cero?</strong></td>
+              <td>No</td>
+              <td>Sí</td>
+            </tr>
+            <tr>
+              <td><strong>Hacer cuentas</strong></td>
+              <td>Complicado (no hay algoritmos sencillos)</td>
+              <td>Más sencillo (algoritmos estándar)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="mini-note">
+          <strong>En corto:</strong> el sistema indoarábigo ganó porque hace las cuentas más fáciles.
+          Y cuando el comercio manda… la matemática obedece.
+        </div>
+
+        <h2 style="margin-top:22px;">4) Demo interactiva: valor posicional</h2>
+        <p>
+          Escribe un número (0 a 9999) y te muestro qué vale cada dígito según su posición.
+        </p>
+
+        <div class="demo" aria-label="Demo de valor posicional">
+          <div class="row">
+            <input id="num" class="input" placeholder="Ejemplo: 507 o 2026" aria-label="Número para descomponer" />
+            <button class="btn" id="btnBreak" type="button">Descomponer</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+          </div>
+          <div class="feedback" id="fb"></div>
+        </div>
+
+        <h2 style="margin-top:22px;">5) Mini-quiz</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">6) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Leonardo de Pisa y el sistema indoarábigo - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Comprender por qué el sistema indoarábigo (posicional con cero) es más eficiente que el romano,
+                y el papel de Fibonacci en su difusión en Europa.
+              </p>
+
+              <ul class="video-points">
+                <li>¿Quién fue Leonardo de Pisa (Fibonacci)?</li>
+                <li>Sistema posicional y el rol del cero.</li>
+                <li>Comparación con números romanos.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t8.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para demo + quiz -->
+  <script>
+    // =========================
+    // Demo: descomposición posicional
+    // =========================
+    function breakDown(){
+      const raw = document.getElementById("num").value.trim();
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","warn");
+
+      if(!raw){
+        fb.classList.add("warn");
+        fb.textContent = "Escribe un número primero 🙂";
+        return;
+      }
+
+      if(!/^\d+$/.test(raw)){
+        fb.classList.add("warn");
+        fb.textContent = "Usa solo dígitos (0-9). Ejemplo: 507, 2026.";
+        return;
+      }
+
+      const nStr = raw.replace(/^0+(?=\d)/, ""); // quita ceros a la izquierda (sin dejar vacío)
+      if(nStr.length > 4){
+        fb.classList.add("warn");
+        fb.textContent = "Por ahora usa números de 0 a 9999 para que se vea claro.";
+        return;
+      }
+
+      const digits = nStr.split("").map(d=>Number(d));
+      const places = ["unidades", "decenas", "centenas", "millares"];
+      const values = [];
+
+      // desde el final hacia el inicio
+      let power = 0;
+      for(let i=digits.length-1; i>=0; i--){
+        const d = digits[i];
+        const val = d * Math.pow(10, power);
+        values.push({d, place: places[power], val});
+        power++;
+      }
+      values.reverse();
+
+      fb.classList.add("ok");
+      fb.innerHTML = `
+        ✅ <strong>${nStr}</strong> en valor posicional:<br><br>
+        ${values.map(v => `• Dígito <strong>${v.d}</strong> en <strong>${v.place}</strong> vale <strong>${v.val}</strong>`).join("<br>")}
+        <br><br><span class="muted">Esto funciona gracias a que el sistema es <strong>posicional</strong> y tiene <strong>cero</strong>.</span>
+      `;
+    }
+
+    function clearDemo(){
+      document.getElementById("num").value = "";
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","warn");
+      fb.textContent = "";
+    }
+
+    document.getElementById("btnBreak").addEventListener("click", breakDown);
+    document.getElementById("btnClear").addEventListener("click", clearDemo);
+
+    // =========================
+    // Mini-quiz
+    // =========================
+    const quizData = [
+      {
+        q: "¿Cómo se conoce comúnmente a Leonardo de Pisa?",
+        opts: [
+          {t:"Fibonacci", ok:true, why:"Correcto: Leonardo de Pisa es conocido como Fibonacci."},
+          {t:"Euclides", ok:false, why:"Euclides fue de la Grecia antigua, otro nivel y otra época."},
+          {t:"Newton", ok:false, why:"Newton es muchísimo después (siglo XVII)."}
+        ]
+      },
+      {
+        q: "¿Qué característica hace “posicional” al sistema indoarábigo?",
+        opts: [
+          {t:"El valor depende del lugar del dígito", ok:true, why:"Exacto: en 507, el 5 vale 500 por su posición."},
+          {t:"Usa letras para escribir números", ok:false, why:"Eso se parece más a romanos."},
+          {t:"No usa cero", ok:false, why:"El cero es clave en este sistema."}
+        ]
+      },
+      {
+        q: "¿Qué problema tienen los números romanos para calcular?",
+        opts: [
+          {t:"No tienen algoritmos sencillos ni cero", ok:true, why:"Correcto: no son posicionales y no tienen cero."},
+          {t:"Tienen demasiados dígitos", ok:false, why:"El problema principal es estructural, no la cantidad de símbolos."},
+          {t:"No se pueden leer", ok:false, why:"Sí se leen, pero calcular es lo difícil."}
+        ]
+      },
+      {
+        q: "¿Para qué sirve el cero en un sistema posicional?",
+        opts: [
+          {t:"Como marcador de posición y como número", ok:true, why:"Sí: distingue 205 de 25 y permite operaciones."},
+          {t:"Solo para decorar", ok:false, why:"El cero sí trabaja (y mucho)."},
+          {t:"Para reemplazar a todos los números", ok:false, why:"No reemplaza: complementa."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fb-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fb-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya te ganaste el título de “Fibonacci del salón” 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Te falta poquito para dominar la historia del 0.";
+        else g.textContent = "Repite: el cero es humilde, pero manda en el sistema posicional.";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
