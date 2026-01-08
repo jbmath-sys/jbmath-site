@@ -3,70 +3,436 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 3 | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Proposiciones compuestas y conectores lógicos | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .two-col{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .two-col{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .sym{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.90);
+    }
+
+    .truth-table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .truth-table th, .truth-table td{
+      text-align:center;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+    }
+    .truth-table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+    }
+    .truth-table tr:last-child td{ border-bottom:none; }
+    .truth-table td:last-child, .truth-table th:last-child{ border-right:none; }
+
+    .vf{
+      display:inline-flex;
+      min-width:32px;
+      justify-content:center;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.03);
+      font-weight:900;
+    }
+    .vf.v{ border-color: rgba(34,197,94,.55); background: rgba(34,197,94,.10); }
+    .vf.f{ border-color: rgba(239,68,68,.55); background: rgba(239,68,68,.10); }
+
+    .builder{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .builder .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .select{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .no{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.10) !important;
+      color:rgba(255,220,220,.95) !important;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Proposiciones compuestas y conectores</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 1 (Lógica Matemática)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Proposiciones compuestas y conectores lógicos</h1>
+        <p class="subtitle">Conjunción (∧) y disyunción (∨): significado, ejemplos y práctica.</p>
 
-<article class="topic">
-  <h2>Proposiciones y conectivos</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t2.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t4.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
-<article class="topic">
-  <h2>Tablas de verdad</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tablas de verdad" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <h2>1) Proposición simple vs. compuesta</h2>
+        <p>
+          Una proposición <strong>simple</strong> es una afirmación sin conectores lógicos.
+          Una proposición <strong>compuesta</strong> se forma al unir dos proposiciones simples con un conector.
+        </p>
 
+        <div class="two-col">
+          <div class="panel">
+            <h3>✅ Proposición simple</h3>
+            <ul>
+              <li>p: “Estudio.”</li>
+              <li>q: “Hago tarea.”</li>
+              <li>r: “Apruebo.”</li>
+            </ul>
+          </div>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+          <div class="panel">
+            <h3>✅ Proposición compuesta</h3>
+            <ul>
+              <li><span class="sym">p ∧ q</span> “Estudio <strong>y</strong> hago tarea.”</li>
+              <li><span class="sym">p ∨ q</span> “Estudio <strong>o</strong> hago tarea.”</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mini-note">
+          <strong>Truco rápido:</strong> en una compuesta, la palabra “y” o “o” conecta dos ideas que por separado también pueden ser V/F.
+        </div>
+
+        <h2 style="margin-top:22px;">2) Conjunción (∧): “y”</h2>
+        <p>
+          La conjunción <span class="sym">p ∧ q</span> es <strong>verdadera</strong> solamente cuando <strong>p</strong> y <strong>q</strong> son verdaderas.
+          Si una falla, toda la conjunción falla.
+        </p>
+
+        <div class="panel">
+          <h3>Ejemplo</h3>
+          <p>
+            p: “Voy a clases.” <br>
+            q: “Entrego la tarea.” <br>
+            <span class="sym">p ∧ q</span>: “Voy a clases y entrego la tarea.”
+          </p>
+        </div>
+
+        <table class="truth-table" aria-label="Tabla de verdad de conjunción">
+          <thead>
+            <tr>
+              <th>p</th>
+              <th>q</th>
+              <th>p ∧ q</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td></tr>
+          </tbody>
+        </table>
+
+        <h2 style="margin-top:22px;">3) Disyunción (∨): “o”</h2>
+        <p>
+          La disyunción <span class="sym">p ∨ q</span> es <strong>verdadera</strong> cuando al menos una de las proposiciones es verdadera.
+          Solo es falsa cuando ambas son falsas.
+        </p>
+
+        <div class="panel">
+          <h3>Ejemplo</h3>
+          <p>
+            p: “Hay internet.” <br>
+            q: “Hay datos móviles.” <br>
+            <span class="sym">p ∨ q</span>: “Hay internet o hay datos móviles.”
+          </p>
+          <p class="muted" style="margin:0;">
+            Nota: Aquí usamos la <strong>o inclusiva</strong> (la de matemáticas): puede ser una o la otra, ¡o las dos!
+          </p>
+        </div>
+
+        <table class="truth-table" aria-label="Tabla de verdad de disyunción">
+          <thead>
+            <tr>
+              <th>p</th>
+              <th>q</th>
+              <th>p ∨ q</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf v">V</span></td><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf v">V</span></td><td><span class="vf v">V</span></td></tr>
+            <tr><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td><td><span class="vf f">F</span></td></tr>
+          </tbody>
+        </table>
+
+        <div class="mini-note">
+          <strong>O inclusiva (∨):</strong> “p o q” permite que ambas sean verdaderas.<br>
+          Si un alumno pregunta “¿pero profe, y si son las dos?”, usted diga: “también, mijo… esto es lógica, no celos” 😄
+        </div>
+
+        <h2 style="margin-top:22px;">4) Práctica interactiva: construye y evalúa</h2>
+        <p>
+          Selecciona valores para p y q, elige el conector y mira el resultado.
+        </p>
+
+        <div class="builder" aria-label="Constructor de proposiciones">
+          <div class="row">
+            <span class="pill">p</span>
+            <select id="pSel" class="select" aria-label="Valor de p">
+              <option value="V">V</option>
+              <option value="F">F</option>
+            </select>
+
+            <span class="pill">Conector</span>
+            <select id="opSel" class="select" aria-label="Conector">
+              <option value="and">∧ (y)</option>
+              <option value="or">∨ (o)</option>
+            </select>
+
+            <span class="pill">q</span>
+            <select id="qSel" class="select" aria-label="Valor de q">
+              <option value="V">V</option>
+              <option value="F">F</option>
+            </select>
+
+            <button class="btn" id="btnEval" type="button">Evaluar</button>
+          </div>
+
+          <div class="feedback" id="fb"></div>
+        </div>
+
+        <!-- ✅ Video (opcional): cambia ID cuando tengas tu video -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">5) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Proposiciones compuestas - Conjunción y disyunción"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Formar proposiciones compuestas con <strong>∧</strong> y <strong>∨</strong> y decidir su valor de verdad.
+              </p>
+
+              <ul class="video-points">
+                <li>Distinguir simple vs. compuesta.</li>
+                <li>Regla de verdad para ∧ y ∨.</li>
+                <li>Interpretación correcta de la “o” inclusiva.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t4.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para evaluar ∧ y ∨ -->
+  <script>
+    function evalOp(p, op, q){
+      const P = (p === "V");
+      const Q = (q === "V");
+      if(op === "and") return (P && Q) ? "V" : "F";
+      if(op === "or")  return (P || Q) ? "V" : "F";
+      return "F";
+    }
+
+    function opText(op){
+      return op === "and" ? "∧ (y)" : "∨ (o)";
+    }
+
+    function explain(p, op, q, r){
+      if(op === "and"){
+        if(r === "V") return "En ∧, solo es V cuando ambos son V. Aquí p y q son V.";
+        return "En ∧, si uno es F, toda la proposición es F.";
+      }else{
+        if(r === "F") return "En ∨, solo es F cuando ambos son F.";
+        return "En ∨, basta con que uno sea V para que el resultado sea V (o los dos).";
+      }
+    }
+
+    document.getElementById("btnEval").addEventListener("click", () => {
+      const p = document.getElementById("pSel").value;
+      const q = document.getElementById("qSel").value;
+      const op = document.getElementById("opSel").value;
+
+      const r = evalOp(p, op, q);
+
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","no");
+
+      const cls = (r === "V") ? "ok" : "no";
+      fb.classList.add(cls);
+
+      fb.innerHTML = `
+        <strong>Resultado:</strong> (${p}) ${opText(op)} (${q}) = <strong>${r}</strong><br>
+        <span class="muted">${explain(p, op, q, r)}</span>
+      `;
+    });
+  </script>
 </body>
 </html>
+
