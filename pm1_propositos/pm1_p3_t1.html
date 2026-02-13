@@ -3,53 +3,650 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 3 (Numeros realse y su clasificacion) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Clasificación de los números reales | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      vertical-align:top;
+      line-height:1.55;
+    }
+    .table th{
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+      text-align:left;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .table td:last-child, .table th:last-child{ border-right:none; }
+
+    /* ===== Clasificador interactivo ===== */
+    .tool{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .tool .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(520px,100%);
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+
+    /* ===== Mini quiz ===== */
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Clasificación de los reales</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 3 (Numeros reales y su clasificacion)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Clasificación de los números reales</h1>
+        <p class="subtitle">Un mapa claro: ℕ, ℤ, ℚ, irracionales… y todo dentro de ℝ.</p>
 
-<article class="topic">
-  <h2>Clasificación de los números reales</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t8.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t10.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Qué son los números reales (ℝ)?</h2>
+        <p>
+          Los <strong>números reales</strong> (ℝ) son todos los números que puedes ubicar en una <strong>recta numérica</strong>.
+          Incluyen a los racionales e irracionales.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Idea clave:</strong> si lo puedes poner en la recta (sin salirte a “otra dimensión”), es real 😄
+        </div>
+
+        <h2 style="margin-top:22px;">2) “Familia” de conjuntos numéricos</h2>
+        <p>
+          La clasificación típica (como “muñecas rusas”) es:
+        </p>
+
+        <div class="panel">
+          <p class="mono" style="margin:0;">
+            ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ
+          </p>
+          <p class="muted" style="margin:10px 0 0;">
+            (Todos los naturales son enteros, todos los enteros son racionales… y todos son reales.)
+          </p>
+        </div>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>ℕ Naturales</h3>
+            <p>Los usamos para contar.</p>
+            <div class="tag">Ejemplos: 0, 1, 2, 3, 10, 25</div>
+          </div>
+          <div class="panel">
+            <h3>ℤ Enteros</h3>
+            <p>Naturales + negativos + cero.</p>
+            <div class="tag">Ejemplos: -5, -1, 0, 7, 20</div>
+          </div>
+          <div class="panel">
+            <h3>ℚ Racionales</h3>
+            <p>Se pueden escribir como fracción <span class="mono">a/b</span> con <span class="mono">b ≠ 0</span>.</p>
+            <div class="tag">Ejemplos: 1/2, -3/4, 5, 0.25, 2.333…</div>
+          </div>
+          <div class="panel">
+            <h3>Irracionales</h3>
+            <p>No se pueden escribir como fracción exacta. Sus decimales no terminan ni se repiten.</p>
+            <div class="tag">Ejemplos: √2, π, e</div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">3) Racionales vs irracionales (la diferencia “que sí importa”)</h2>
+        <table class="table" aria-label="Comparación de racionales e irracionales">
+          <thead>
+            <tr>
+              <th>Tipo</th>
+              <th>Forma</th>
+              <th>Decimal</th>
+              <th>Ejemplo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Racional (ℚ)</strong></td>
+              <td><span class="mono">a/b</span></td>
+              <td>Termina o se repite</td>
+              <td><span class="mono">3/8 = 0.375</span>, <span class="mono">2/3 = 0.666…</span></td>
+            </tr>
+            <tr>
+              <td><strong>Irracional</strong></td>
+              <td>No es fracción exacta</td>
+              <td>No termina ni se repite</td>
+              <td><span class="mono">√2 = 1.414213…</span>, <span class="mono">π = 3.14159…</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="mini-note">
+          <strong>Tip de examen:</strong> si el decimal se repite (aunque sea con periodo largo), es racional.
+          Si no termina y no repite, es irracional.
+        </div>
+
+        <h2 style="margin-top:22px;">4) Clasificador interactivo</h2>
+        <p>
+          Escribe un número y te digo en qué conjuntos cae (ℕ, ℤ, ℚ, irracional, ℝ).
+          <span class="tag">Acepta fracciones tipo 3/4</span>
+          <span class="tag">Acepta raíces tipo sqrt(2)</span>
+          <span class="tag">Acepta pi</span>
+        </p>
+
+        <div class="tool" aria-label="Clasificador de números reales">
+          <div class="row">
+            <input id="val" class="input" placeholder="Ejemplos: -5, 0, 7, 3/4, 2.5, sqrt(2), pi" aria-label="Número a clasificar" />
+            <button class="btn" id="btnClass" type="button">Clasificar</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+          </div>
+          <div class="feedback" id="fb"></div>
+        </div>
+
+        <h2 style="margin-top:22px;">5) Mini-quiz</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">6) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Clasificación de números reales - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Clasificar números dentro de ℝ y distinguir racionales e irracionales.
+              </p>
+
+              <ul class="video-points">
+                <li>ℕ, ℤ, ℚ, irracionales y ℝ.</li>
+                <li>Decimales: termina / repite vs no termina / no repite.</li>
+                <li>Ejemplos típicos: fracciones, raíces, π.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t10.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0 7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para clasificador + quiz -->
+  <script>
+    // =========================
+    // Helpers: parse y clasificación
+    // =========================
+    function gcd(a,b){ a=Math.abs(a); b=Math.abs(b); while(b){ [a,b]=[b,a%b]; } return a||1; }
+
+    function parseValue(raw){
+      // Soporta: enteros/decimales, fracción a/b, sqrt(x), pi
+      let s = raw.trim().toLowerCase();
+
+      if(!s) return { ok:false, msg:"Escribe un número primero 🙂" };
+
+      // pi
+      if(s === "pi" || s === "π"){
+        return { ok:true, kind:"irrational", value: Math.PI, repr:"π" };
+      }
+
+      // sqrt(x)
+      const mS = s.match(/^sqrt\((.+)\)$/);
+      if(mS){
+        const inner = mS[1].trim();
+        const innerNum = Number(inner);
+        if(Number.isNaN(innerNum)) return { ok:false, msg:"En sqrt(x), x debe ser numérico. Ej: sqrt(2), sqrt(9)." };
+        if(innerNum < 0) return { ok:false, msg:"sqrt(x) con x<0 no es real (en ℝ no cabe)." };
+        const val = Math.sqrt(innerNum);
+        // si inner es cuadrado perfecto -> racional
+        const r = Math.round(val);
+        if(Math.abs(val - r) < 1e-12){
+          return { ok:true, kind:"rational", value: r, repr:`√${inner}` };
+        }
+        return { ok:true, kind:"irrational", value: val, repr:`√${inner}` };
+      }
+
+      // fracción a/b
+      const mF = s.match(/^(-?\d+)\s*\/\s*(-?\d+)$/);
+      if(mF){
+        const a = Number(mF[1]);
+        const b = Number(mF[2]);
+        if(b === 0) return { ok:false, msg:"Una fracción con denominador 0 no está definida." };
+        // racional exacto
+        const g = gcd(a,b);
+        const aa = a/g, bb = b/g;
+        return { ok:true, kind:"rational", value: a/b, repr:`${aa}/${bb}`, frac:{a:aa,b:bb} };
+      }
+
+      // número normal
+      if(!/^[+-]?(\d+(\.\d+)?|\.\d+)$/.test(s)){
+        return { ok:false, msg:"Formato no reconocido. Ejemplos: -5, 2.5, 3/4, sqrt(2), pi." };
+      }
+      const n = Number(s);
+
+      // decimales finitos => racional
+      if(Number.isFinite(n)){
+        // Si es entero exacto
+        if(Number.isInteger(n)) return { ok:true, kind:"integer", value:n, repr:String(n) };
+        return { ok:true, kind:"rational", value:n, repr:String(n) };
+      }
+      return { ok:false, msg:"No pude interpretar ese valor." };
+    }
+
+    function classify(raw){
+      const parsed = parseValue(raw);
+      if(!parsed.ok) return { ok:false, msg: parsed.msg };
+
+      const sets = [];
+      // Todo lo que parseamos aquí es real
+      sets.push("ℝ (reales)");
+
+      let isInt = false;
+      let isNat = false;
+      let isRat = false;
+      let isIrr = false;
+
+      if(parsed.kind === "integer"){
+        isInt = true;
+        isRat = true; // todo entero es racional
+      } else if(parsed.kind === "rational"){
+        isRat = true;
+        // si el racional es entero exacto
+        if(Number.isInteger(parsed.value)){
+          isInt = true;
+        }
+      } else if(parsed.kind === "irrational"){
+        isIrr = true;
+      }
+
+      if(isRat) sets.unshift("ℚ (racionales)");
+      if(isIrr) sets.unshift("Irracionales");
+      if(isInt) sets.unshift("ℤ (enteros)");
+
+      // convención: ℕ = {0,1,2,3,...}
+      if(isInt && parsed.value >= 0) {
+        isNat = true;
+        sets.unshift("ℕ (naturales)");
+      }
+
+      return {
+        ok:true,
+        repr: parsed.repr,
+        approx: parsed.kind === "irrational" ? parsed.value : null,
+        sets
+      };
+    }
+
+    function runClassify(){
+      const raw = document.getElementById("val").value;
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","warn");
+
+      const res = classify(raw);
+
+      if(!res.ok){
+        fb.classList.add("warn");
+        fb.textContent = res.msg;
+        return;
+      }
+
+      fb.classList.add("ok");
+      const approxLine = (res.approx !== null)
+        ? `<br><span class="muted">Aproximación decimal: ${res.approx}</span>`
+        : "";
+
+      fb.innerHTML = `
+        ✅ <strong>${res.repr}</strong> pertenece a:<br>
+        ${res.sets.map(s=>`• <strong>${s}</strong>`).join("<br>")}
+        ${approxLine}
+      `;
+    }
+
+    function clearClassify(){
+      document.getElementById("val").value = "";
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","warn");
+      fb.textContent = "";
+    }
+
+    document.getElementById("btnClass").addEventListener("click", runClassify);
+    document.getElementById("btnClear").addEventListener("click", clearClassify);
+
+    // =========================
+    // Mini-quiz
+    // =========================
+    const quizData = [
+      {
+        q: "¿Qué conjunto contiene a todos los racionales e irracionales?",
+        opts: [
+          {t:"ℝ", ok:true, why:"Correcto: ℝ incluye racionales e irracionales."},
+          {t:"ℚ", ok:false, why:"ℚ solo son racionales."},
+          {t:"ℕ", ok:false, why:"ℕ es un subconjunto pequeño (naturales)."}
+        ]
+      },
+      {
+        q: "¿Cuál de estos es irracional?",
+        opts: [
+          {t:"√2", ok:true, why:"Correcto: √2 no se puede escribir como fracción exacta."},
+          {t:"0.25", ok:false, why:"0.25 = 1/4 es racional."},
+          {t:"-7", ok:false, why:"-7 es entero y racional."}
+        ]
+      },
+      {
+        q: "Si un decimal se repite (por ejemplo 0.666...), entonces el número es:",
+        opts: [
+          {t:"Racional", ok:true, why:"Correcto: decimales periódicos son racionales."},
+          {t:"Irracional", ok:false, why:"Irracional = no termina ni se repite."}
+        ]
+      },
+      {
+        q: "La relación correcta entre conjuntos es:",
+        opts: [
+          {t:"ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ", ok:true, why:"Correcto: es la cadena típica de inclusión."},
+          {t:"ℝ ⊂ ℚ ⊂ ℤ ⊂ ℕ", ok:false, why:"Está al revés."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fbq-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fbq-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya clasificas números como si fueran Pokémon 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Te falta poquito para dominar ℝ.";
+        else g.textContent = "Repite: ℕ, ℤ, ℚ y los irracionales no son enemigos… son familia.";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
