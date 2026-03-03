@@ -3,53 +3,613 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 3 (Numeros realse y su clasificacion) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Factorización de números enteros (Teorema Fundamental de la Aritmética) | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      vertical-align:top;
+      line-height:1.55;
+    }
+    .table th{
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+      text-align:left;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .table td:last-child, .table th:last-child{ border-right:none; }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+    }
+
+    /* ===== Herramienta interactiva ===== */
+    .tool{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .tool .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(360px,100%);
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+
+    .steps{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      color:rgba(255,255,255,.85);
+      line-height:1.6;
+    }
+    .steps ol{ margin:0; padding-left:18px; }
+    .steps li{ margin:6px 0; }
+
+    /* ===== Mini quiz ===== */
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Factorización (TFA)</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 3 (Numeros reales y su clasificacion)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Factorización de números enteros (Teorema Fundamental de la Aritmética)</h1>
+        <p class="subtitle">Todo número (mayor que 1) se construye con primos… y de una sola forma.</p>
 
-<article class="topic">
-  <h2>Factorización de números naturales(Teorema Fundamental del Aritmética)</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t11.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t13.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Qué significa “factorizar”?</h2>
+        <p>
+          <strong>Factorizar</strong> un número es escribirlo como multiplicación de números más pequeños.
+          La factorización más importante es la <strong>descomposición en factores primos</strong>.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Ejemplo:</strong> <span class="mono">60 = 2×2×3×5 = 2²×3×5</span>
+        </div>
+
+        <h2 style="margin-top:22px;">2) Primos y compuestos</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>Número primo</h3>
+            <p>Tiene exactamente <strong>dos</strong> divisores positivos: 1 y él mismo.</p>
+            <div class="tag">Ejemplos: 2, 3, 5, 7, 11, 13</div>
+          </div>
+          <div class="panel">
+            <h3>Número compuesto</h3>
+            <p>Tiene <strong>más</strong> de dos divisores: se puede formar multiplicando primos.</p>
+            <div class="tag">Ejemplos: 4, 6, 8, 9, 10, 12</div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">3) Teorema Fundamental de la Aritmética (TFA)</h2>
+        <p>
+          Todo número entero <strong>mayor que 1</strong> puede escribirse como un producto de números primos,
+          y esa factorización es <strong>única</strong> (salvo el orden).
+        </p>
+
+        <div class="mini-note">
+          <strong>Traducción humana:</strong> los primos son los “átomos” de los números. Puedes reordenarlos,
+          pero no puedes cambiar cuáles son.
+        </div>
+
+        <h2 style="margin-top:22px;">4) ¿Cómo se factoriza en primos? (método práctico)</h2>
+        <div class="panel">
+          <p style="margin:0 0 10px;">
+            Método rápido con divisiones entre primos:
+          </p>
+          <ul>
+            <li>Empieza dividiendo entre 2 (si es par), luego 3, 5, 7…</li>
+            <li>Cada vez que divides, el cociente se vuelve tu nuevo número.</li>
+            <li>Terminas cuando el cociente sea 1.</li>
+          </ul>
+        </div>
+
+        <h2 style="margin-top:22px;">5) Herramienta interactiva: factorizador</h2>
+        <p>
+          Escribe un entero (por ejemplo: 360, 84, 1200) y te muestro:
+          factores primos, forma con potencias y los pasos.
+        </p>
+
+        <div class="tool" aria-label="Factorizador de enteros">
+          <div class="row">
+            <input id="n" class="input" placeholder="Ejemplo: 360" aria-label="Número a factorizar" />
+            <button class="btn" id="btnFact" type="button">Factorizar</button>
+            <button class="btn" id="btnRnd" type="button">Ejemplo</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+          </div>
+
+          <div class="feedback" id="fb"></div>
+          <div class="steps" id="steps" style="display:none;"></div>
+        </div>
+
+        <h2 style="margin-top:22px;">6) ¿Para qué sirve factorizar?</h2>
+        <div class="grid2">
+          <div class="panel">
+            <h3>MCD y mcm</h3>
+            <p>Con factores primos puedes calcular MCD y mcm rápido.</p>
+            <div class="tag">Ej: simplificar fracciones</div>
+          </div>
+          <div class="panel">
+            <h3>Divisibilidad</h3>
+            <p>Saber si un número divide a otro sin adivinar.</p>
+            <div class="tag">Ej: problemas de reparto</div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">7) Mini-quiz</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">8) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Factorización y Teorema Fundamental de la Aritmética - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Descomponer números en factores primos y comprender la unicidad de la factorización.
+              </p>
+
+              <ul class="video-points">
+                <li>Primos vs compuestos.</li>
+                <li>Descomposición en factores primos (con potencias).</li>
+                <li>Aplicaciones: MCD, mcm, simplificación.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t13.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para factorizador + quiz -->
+  <script>
+    // =========================
+    // Factorización por división entre primos
+    // =========================
+    function parsePosInt(s){
+      const t = (s || "").trim();
+      if(!t) return {ok:false, msg:"Escribe un número primero 🙂"};
+      if(!/^\d+$/.test(t)) return {ok:false, msg:"Usa solo enteros positivos. Ej: 84, 360, 1200."};
+      const n = Number(t);
+      if(n < 2) return {ok:false, msg:"Para factorizar en primos usa n ≥ 2."};
+      if(n > 1000000) return {ok:false, msg:"Usa un número ≤ 1,000,000 para que los pasos se vean claros."};
+      return {ok:true, val:n};
+    }
+
+    function factorize(n){
+      const factors = [];
+      const steps = [];
+      let x = n;
+
+      // divide por 2
+      while(x % 2 === 0){
+        steps.push(`${x} ÷ 2 = ${x/2}`);
+        factors.push(2);
+        x = x/2;
+      }
+      // impares
+      let p = 3;
+      while(p*p <= x){
+        while(x % p === 0){
+          steps.push(`${x} ÷ ${p} = ${x/p}`);
+          factors.push(p);
+          x = x/p;
+        }
+        p += 2;
+      }
+      if(x > 1){
+        if(x !== n) steps.push(`Factor primo final: ${x}`);
+        factors.push(x);
+      }
+      return {factors, steps};
+    }
+
+    function toPowers(factors){
+      const map = new Map();
+      factors.forEach(f => map.set(f, (map.get(f)||0)+1));
+      const parts = [];
+      [...map.entries()].sort((a,b)=>a[0]-b[0]).forEach(([p,e])=>{
+        parts.push(e===1 ? `${p}` : `${p}<sup>${e}</sup>`);
+      });
+      return { map, html: parts.join(" × ") };
+    }
+
+    function run(){
+      const fb = document.getElementById("fb");
+      const stepsBox = document.getElementById("steps");
+      fb.classList.remove("ok","warn");
+      fb.textContent = "";
+      stepsBox.style.display = "none";
+      stepsBox.innerHTML = "";
+
+      const parsed = parsePosInt(document.getElementById("n").value);
+      if(!parsed.ok){
+        fb.classList.add("warn");
+        fb.textContent = parsed.msg;
+        return;
+      }
+
+      const n = parsed.val;
+      const {factors, steps} = factorize(n);
+      const pow = toPowers(factors);
+
+      fb.classList.add("ok");
+      fb.innerHTML = `
+        ✅ <strong>${n}</strong> en factores primos:<br>
+        • Lista: <span class="mono">${factors.join(" × ")}</span><br>
+        • Con potencias: <span class="mono">${pow.html}</span>
+        <br><span class="muted">Unicidad (TFA): estos primos no cambian, solo el orden.</span>
+      `;
+
+      stepsBox.style.display = "block";
+      stepsBox.innerHTML = `
+        <strong>Pasos (divisiones):</strong>
+        <ol>
+          ${steps.length ? steps.map(s=>`<li><span class="mono">${s}</span></li>`).join("") : "<li><span class='mono'>El número ya es primo.</span></li>"}
+        </ol>
+      `;
+    }
+
+    function rnd(){
+      const samples = [60, 84, 90, 96, 120, 180, 210, 360, 420, 840, 1001, 1024];
+      const n = samples[Math.floor(Math.random()*samples.length)];
+      document.getElementById("n").value = String(n);
+      run();
+    }
+
+    function clearAll(){
+      document.getElementById("n").value = "";
+      const fb = document.getElementById("fb");
+      const stepsBox = document.getElementById("steps");
+      fb.classList.remove("ok","warn");
+      fb.textContent = "";
+      stepsBox.style.display = "none";
+      stepsBox.innerHTML = "";
+    }
+
+    document.getElementById("btnFact").addEventListener("click", run);
+    document.getElementById("btnRnd").addEventListener("click", rnd);
+    document.getElementById("btnClear").addEventListener("click", clearAll);
+
+    // =========================
+    // Mini-quiz
+    // =========================
+    const quizData = [
+      {
+        q: "El Teorema Fundamental de la Aritmética dice que:",
+        opts: [
+          {t:"Todo n>1 se escribe como producto de primos de forma única (salvo el orden)", ok:true, why:"Correcto: existencia y unicidad de la factorización prima."},
+          {t:"Todo número es primo", ok:false, why:"No: hay compuestos."}
+        ]
+      },
+      {
+        q: "¿Cuál de estos es primo?",
+        opts: [
+          {t:"13", ok:true, why:"Correcto: solo tiene divisores 1 y 13."},
+          {t:"21", ok:false, why:"21 = 3×7 (compuesto)."}
+        ]
+      },
+      {
+        q: "60 en factores primos es:",
+        opts: [
+          {t:"2²×3×5", ok:true, why:"Correcto: 60=2×2×3×5."},
+          {t:"2×3×10", ok:false, why:"10 no es primo: falta descomponerlo."}
+        ]
+      },
+      {
+        q: "Si un número termina en 0, es divisible entre:",
+        opts: [
+          {t:"2 y 5", ok:true, why:"Correcto: termina en 0 ⇒ divisible entre 10 ⇒ entre 2 y 5."},
+          {t:"3 siempre", ok:false, why:"No siempre: depende de la suma de cifras."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fbq-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fbq-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya desarmas números como lego (y los armas mejor) 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Ya casi dominas la factorización prima.";
+        else g.textContent = "Repite: empieza por 2, luego 3, luego 5… y deja que los primos hagan el trabajo.";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
