@@ -3,53 +3,701 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 3 (Numeros realse y su clasificacion) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Propiedades: cerradura, conmutativa, asociativa, neutro e inverso | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      vertical-align:top;
+      line-height:1.55;
+    }
+    .table th{
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+      text-align:left;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .table td:last-child, .table th:last-child{ border-right:none; }
+
+    /* ===== Verificador interactivo ===== */
+    .tool{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .tool .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(260px,100%);
+    }
+    .select{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+    .bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.10) !important;
+      color:rgba(255,220,220,.95) !important;
+    }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+    }
+
+    /* ===== Flash cards ===== */
+    .flash{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .flash .top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .flash .card{
+      margin-top:10px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:16px;
+      padding:14px;
+      background:rgba(0,0,0,.14);
+    }
+    .flash .q{
+      margin:0;
+      font-weight:900;
+      font-size:16px;
+    }
+    .flash .a{
+      margin:10px 0 0;
+      color:rgba(255,255,255,.85);
+      line-height:1.55;
+      display:none;
+    }
+    .flash .a.show{ display:block; }
+    .flash .hint{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* ===== Mini quiz ===== */
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>Propiedades e inversos</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 3 (Numeros reales y su clasificacion)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Propiedades: cerradura, conmutativa, asociativa, neutro e inverso</h1>
+        <p class="subtitle">Lo que hace que las operaciones “se comporten bien” (y por eso funcionan los procedimientos).</p>
 
-<article class="topic">
-  <h2>Propiedades de las operaciones aritmeticas:cerradura, conmutativa, asociativa y comuntativa, nuetros e inversos aditivo y multiplicativo</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t10.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t12.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Qué es una propiedad en matemáticas?</h2>
+        <p>
+          Una <strong>propiedad</strong> es una regla general que se cumple para una operación en un conjunto de números.
+          Por ejemplo, en enteros (ℤ) la suma es conmutativa, pero la resta no.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Traducción humana:</strong> una propiedad es un “permiso” para hacer movimientos sin cambiar el resultado.
+        </div>
+
+        <h2 style="margin-top:22px;">2) Las 5 propiedades clave (con ejemplos)</h2>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>Cerradura</h3>
+            <p>Si operas dos números del conjunto, ¿el resultado se queda en el mismo conjunto?</p>
+            <ul>
+              <li>En ℤ: <span class="mono">(-3) + 5 = 2</span> (sigue en ℤ)</li>
+              <li>En ℤ: <span class="mono">4 − 9 = -5</span> (sigue en ℤ)</li>
+              <li><span class="tag">Ojo</span> En ℤ la división NO siempre queda en ℤ: <span class="mono">1 ÷ 2 = 0.5</span></li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Conmutativa</h3>
+            <p>El orden no cambia el resultado (para ciertas operaciones).</p>
+            <ul>
+              <li>Suma: <span class="mono">a + b = b + a</span></li>
+              <li>Multiplicación: <span class="mono">a×b = b×a</span></li>
+              <li><span class="tag">No aplica</span> Resta: <span class="mono">7−2 ≠ 2−7</span></li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Asociativa</h3>
+            <p>La forma de agrupar no cambia el resultado.</p>
+            <ul>
+              <li>Suma: <span class="mono">(a+b)+c = a+(b+c)</span></li>
+              <li>Multiplicación: <span class="mono">(a×b)×c = a×(b×c)</span></li>
+              <li><span class="tag">No aplica</span> Resta: <span class="mono">(8−3)−2 ≠ 8−(3−2)</span></li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Neutro (identidad)</h3>
+            <p>Un número que “no cambia” al otro cuando operas.</p>
+            <ul>
+              <li><strong>Neutro aditivo</strong>: <span class="mono">a + 0 = a</span></li>
+              <li><strong>Neutro multiplicativo</strong>: <span class="mono">a × 1 = a</span></li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3>Inverso</h3>
+            <p>Un número que “deshace” al otro y te regresa al neutro.</p>
+            <ul>
+              <li><strong>Inverso aditivo</strong>: para <span class="mono">a</span> es <span class="mono">-a</span>, porque <span class="mono">a + (-a) = 0</span></li>
+              <li><strong>Inverso multiplicativo</strong>: para <span class="mono">a</span> (con <span class="mono">a ≠ 0</span>) es <span class="mono">1/a</span>, porque <span class="mono">a × (1/a) = 1</span></li>
+            </ul>
+            <div class="mini-note" style="margin-top:10px;">
+              <strong>Dato que cae en exámenes:</strong> <span class="mono">0</span> NO tiene inverso multiplicativo (no existe <span class="mono">1/0</span>).
+            </div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">3) Tabla rápida: ¿qué propiedades cumplen las operaciones?</h2>
+
+        <table class="table" aria-label="Tabla de propiedades por operación">
+          <thead>
+            <tr>
+              <th>Operación</th>
+              <th>Conmutativa</th>
+              <th>Asociativa</th>
+              <th>Neutro</th>
+              <th>Inverso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Suma</strong> (<span class="mono">+</span>)</td>
+              <td>✅ Sí</td>
+              <td>✅ Sí</td>
+              <td><span class="mono">0</span></td>
+              <td><span class="mono">-a</span></td>
+            </tr>
+            <tr>
+              <td><strong>Resta</strong> (<span class="mono">−</span>)</td>
+              <td>❌ No</td>
+              <td>❌ No</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>Multiplicación</strong> (<span class="mono">×</span>)</td>
+              <td>✅ Sí</td>
+              <td>✅ Sí</td>
+              <td><span class="mono">1</span></td>
+              <td><span class="mono">1/a</span> (si <span class="mono">a≠0</span>)</td>
+            </tr>
+            <tr>
+              <td><strong>División</strong> (<span class="mono">÷</span>)</td>
+              <td>❌ No</td>
+              <td>❌ No</td>
+              <td>—</td>
+              <td>—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="mini-note">
+          <strong>Frase para recordar:</strong> “La suma y el producto son tranquilos; la resta y la división son de carácter fuerte.”
+        </div>
+
+        <h2 style="margin-top:22px;">4) Verificador interactivo: neutro e inversos</h2>
+        <p>
+          Escribe un entero <span class="mono">a</span> y te doy su <strong>neutro</strong> y su <strong>inverso aditivo</strong>.
+          Si además quieres el inverso multiplicativo, te lo doy como fracción <span class="mono">1/a</span> (si <span class="mono">a ≠ 0</span>).
+        </p>
+
+        <div class="tool" aria-label="Verificador de neutros e inversos">
+          <div class="row">
+            <input id="a" class="input" placeholder="a (ej: -7)" aria-label="Valor a" />
+            <button class="btn" id="btnCheck" type="button">Ver</button>
+            <button class="btn" id="btnRnd" type="button">Ejemplo</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+          </div>
+          <div class="feedback" id="fb"></div>
+        </div>
+
+        <h2 style="margin-top:22px;">5) Flashcards (para repasar rápido)</h2>
+        <div class="flash" aria-label="Flashcards de propiedades">
+          <div class="top">
+            <span class="pill" id="pillFlash">Tarjeta 1/6</span>
+            <div class="row" style="margin-top:0;">
+              <button class="btn" id="btnPrev" type="button">←</button>
+              <button class="btn" id="btnFlip" type="button">Voltear</button>
+              <button class="btn" id="btnNext" type="button">→</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="q" id="flashQ">—</p>
+            <p class="a" id="flashA">—</p>
+            <p class="hint">Tip: si “puedes cambiar orden” es conmutativa; si “puedes cambiar paréntesis” es asociativa.</p>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">6) Mini-quiz</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">7) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="Propiedades de operaciones - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Identificar y aplicar propiedades de suma y multiplicación, y reconocer neutros e inversos.
+              </p>
+
+              <ul class="video-points">
+                <li>Cerradura, conmutativa, asociativa.</li>
+                <li>Neutro aditivo (0) y multiplicativo (1).</li>
+                <li>Inverso aditivo (−a) e inverso multiplicativo (1/a, a≠0).</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t12.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para verificador + flashcards + quiz -->
+  <script>
+    // =========================
+    // Verificador de neutro e inversos
+    // =========================
+    function parseIntStrict(s){
+      if(!s) return {ok:false, msg:"Escribe un entero primero 🙂"};
+      if(!/^[+-]?\d+$/.test(s.trim())) return {ok:false, msg:`"${s}" no es entero. Ej: -7, 0, 12.`};
+      return {ok:true, val:Number(s)};
+    }
+
+    function check(){
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","warn","bad");
+      fb.textContent = "";
+
+      const pa = parseIntStrict(document.getElementById("a").value);
+      if(!pa.ok){ fb.classList.add("warn"); fb.textContent = pa.msg; return; }
+
+      const a = pa.val;
+      const addInv = -a;
+
+      let multInvText = "";
+      if(a === 0){
+        multInvText = `• Inverso multiplicativo: <strong>no existe</strong> (no hay <span class="mono">1/0</span>).`;
+      }else{
+        multInvText = `• Inverso multiplicativo: <span class="mono">1/${a}</span> (porque <span class="mono">${a}×(1/${a})=1</span>).`;
+      }
+
+      fb.classList.add("ok");
+      fb.innerHTML = `
+        ✅ Para <strong>a = ${a}</strong>:<br>
+        • Neutro aditivo: <span class="mono">0</span> (porque <span class="mono">${a}+0=${a}</span>)<br>
+        • Inverso aditivo: <span class="mono">${addInv}</span> (porque <span class="mono">${a}+(${addInv})=0</span>)<br>
+        • Neutro multiplicativo: <span class="mono">1</span> (porque <span class="mono">${a}×1=${a}</span>)<br>
+        ${multInvText}
+      `;
+    }
+
+    function rnd(){
+      const a = Math.floor(Math.random()*31) - 15; // [-15,15]
+      document.getElementById("a").value = String(a);
+      check();
+    }
+
+    function clearAll(){
+      document.getElementById("a").value = "";
+      const fb = document.getElementById("fb");
+      fb.classList.remove("ok","warn","bad");
+      fb.textContent = "";
+    }
+
+    document.getElementById("btnCheck").addEventListener("click", check);
+    document.getElementById("btnRnd").addEventListener("click", rnd);
+    document.getElementById("btnClear").addEventListener("click", clearAll);
+
+    // =========================
+    // Flashcards
+    // =========================
+    const flash = [
+      { q:"¿Qué dice la propiedad de cerradura?", a:"Si operas dos números del conjunto (con una operación específica), el resultado también pertenece al conjunto. Ej: en ℤ, a+b ∈ ℤ." },
+      { q:"¿Qué es conmutativa?", a:"Puedes cambiar el orden sin cambiar el resultado. Ej: a+b=b+a; a×b=b×a. (No aplica a resta ni división)." },
+      { q:"¿Qué es asociativa?", a:"Puedes cambiar la forma de agrupar sin cambiar el resultado. Ej: (a+b)+c=a+(b+c); (a×b)×c=a×(b×c)." },
+      { q:"¿Cuál es el neutro aditivo?", a:"El 0, porque a+0=a." },
+      { q:"¿Cuál es el neutro multiplicativo?", a:"El 1, porque a×1=a." },
+      { q:"¿Qué es el inverso (aditivo y multiplicativo)?", a:"Aditivo: -a porque a+(-a)=0. Multiplicativo: 1/a (si a≠0) porque a×(1/a)=1." },
+    ];
+
+    let idx = 0;
+    const flashQ = document.getElementById("flashQ");
+    const flashA = document.getElementById("flashA");
+    const pillFlash = document.getElementById("pillFlash");
+
+    function renderFlash(){
+      flashQ.textContent = flash[idx].q;
+      flashA.textContent = flash[idx].a;
+      flashA.classList.remove("show");
+      pillFlash.textContent = `Tarjeta ${idx+1}/${flash.length}`;
+    }
+    function flip(){ flashA.classList.toggle("show"); }
+    function prev(){ idx = (idx - 1 + flash.length) % flash.length; renderFlash(); }
+    function next(){ idx = (idx + 1) % flash.length; renderFlash(); }
+
+    document.getElementById("btnFlip").addEventListener("click", flip);
+    document.getElementById("btnPrev").addEventListener("click", prev);
+    document.getElementById("btnNext").addEventListener("click", next);
+
+    renderFlash();
+
+    // =========================
+    // Mini-quiz
+    // =========================
+    const quizData = [
+      {
+        q: "¿Cuál es el neutro aditivo?",
+        opts: [
+          {t:"0", ok:true, why:"Correcto: a+0=a."},
+          {t:"1", ok:false, why:"1 es el neutro multiplicativo."}
+        ]
+      },
+      {
+        q: "¿Cuál es el inverso aditivo de -7?",
+        opts: [
+          {t:"7", ok:true, why:"Correcto: -7 + 7 = 0."},
+          {t:"1/7", ok:false, why:"Ese sería multiplicativo (y no aplica así a enteros como inverso entero)."}
+        ]
+      },
+      {
+        q: "La suma es conmutativa porque:",
+        opts: [
+          {t:"a+b=b+a", ok:true, why:"Correcto: cambiar el orden no cambia el resultado."},
+          {t:"(a+b)+c=a+(b+c)", ok:false, why:"Eso es asociativa, no conmutativa."}
+        ]
+      },
+      {
+        q: "¿Qué afirmación es verdadera?",
+        opts: [
+          {t:"La resta es conmutativa", ok:false, why:"No: 7−2 ≠ 2−7."},
+          {t:"La multiplicación es asociativa", ok:true, why:"Sí: (a×b)×c = a×(b×c)."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fbq-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fbq-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya tienes las propiedades “en la bolsa” (y sin romperla) 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Una repasada más y queda fino.";
+        else g.textContent = "Repite: neutro e inversos son la llave para simplificar y despejar.";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
