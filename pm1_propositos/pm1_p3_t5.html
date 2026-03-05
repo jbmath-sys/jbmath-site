@@ -3,53 +3,629 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 3 (Numeros realse y su clasificacion) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+  <title>Mínimo Común Múltiplo y Máximo Común Divisor | JBMATH</title>
+  <link rel="stylesheet" href="../assets/style.css" />
+
+  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
+  <style>
+    /* ===== EXTRA UI (solo esta página) ===== */
+    .mini-note{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(124,58,237,.35);
+      background:rgba(124,58,237,.10);
+      color:rgba(255,255,255,.86);
+    }
+    .mini-note strong{ color:rgba(255,255,255,.92); }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+      margin-top:12px;
+    }
+    @media (max-width: 860px){
+      .grid2{ grid-template-columns: 1fr; }
+    }
+
+    .panel{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .panel h3{
+      margin:0 0 8px;
+      font-size:15px;
+      letter-spacing:.2px;
+    }
+    .panel p{ margin:0 0 10px; color:rgba(255,255,255,.85); }
+    .panel ul{ margin:0; padding-left:18px; color:rgba(255,255,255,.82); }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      font-size:12px;
+      color:rgba(255,255,255,.82);
+    }
+
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      margin-top:12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.12);
+    }
+    .table th, .table td{
+      text-align:left;
+      padding:10px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      border-right:1px solid rgba(255,255,255,.06);
+      font-size:13px;
+      color:rgba(255,255,255,.86);
+      vertical-align:top;
+      line-height:1.55;
+    }
+    .table th{
+      color: var(--muted);
+      font-size:12px;
+      letter-spacing:.2px;
+      text-align:left;
+    }
+    .table tr:last-child td{ border-bottom:none; }
+    .table td:last-child, .table th:last-child{ border-right:none; }
+
+    .mono{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:13px;
+      color:rgba(255,255,255,.88);
+    }
+
+    /* ===== Herramienta interactiva ===== */
+    .tool{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .tool .row{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top:10px;
+    }
+    .input{
+      padding:10px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.9);
+      outline:none;
+      width:min(240px,100%);
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      color:rgba(255,255,255,.82);
+      font-size:12px;
+    }
+    .feedback{
+      margin-top:10px;
+      color:var(--muted);
+      line-height:1.55;
+    }
+    .ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.10) !important;
+      color:rgba(220,255,235,.95) !important;
+    }
+    .warn{
+      border-color: rgba(245,158,11,.55) !important;
+      background: rgba(245,158,11,.10) !important;
+      color:rgba(255,235,200,.95) !important;
+    }
+
+    .steps{
+      margin-top:12px;
+      padding:12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(0,0,0,.12);
+      color:rgba(255,255,255,.85);
+      line-height:1.6;
+    }
+    .steps ol{ margin:0; padding-left:18px; }
+    .steps li{ margin:6px 0; }
+
+    /* ===== Mini quiz ===== */
+    .quiz{
+      margin-top:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      border-radius:16px;
+      padding:14px;
+    }
+    .quiz .qtitle{
+      margin:0 0 10px;
+      font-weight:800;
+    }
+    .quiz .qtext{ margin:0 0 10px; color:rgba(255,255,255,.86); }
+    .quiz .opts{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px;
+    }
+    .btn-ok{
+      border-color: rgba(34,197,94,.55) !important;
+      background: rgba(34,197,94,.12) !important;
+    }
+    .btn-bad{
+      border-color: rgba(239,68,68,.55) !important;
+      background: rgba(239,68,68,.12) !important;
+    }
+    .score-line{
+      margin-top:10px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+  </style>
 </head>
+
 <body>
-<header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
+  <header class="site-header">
+    <div class="header-inner container">
+      <a class="brand" href="../index.html" aria-label="Ir a inicio">
+        <img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+        <div class="brand-text">
+          <span class="brand-name">JBMATH</span>
+          <span class="brand-tagline">Plataforma educativa</span>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a class="nav-link" href="../index.html">Inicio</a>
+        <a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+        <a class="nav-link" href="../contacto.html">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="breadcrumbs" aria-label="Ruta de navegación">
+      <a href="../index.html">Inicio</a>
+      <span class="sep">›</span>
+      <a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+      <span class="sep">›</span>
+      <span>Propósito 1</span>
+      <span class="sep">›</span>
+      <strong>MCM y MCD</strong>
     </nav>
-  </div>
-</header>
-<main class="container content">
 
-<h1>PM I — Progresión 3 (Numeros reales y su clasificacion)</h1>
+    <section class="hero">
+      <div class="hero-card">
+        <p class="badge">PM I · Propósito 1</p>
+        <h1 class="title">Mínimo Común Múltiplo (mcm) y Máximo Común Divisor (MCD)</h1>
+        <p class="subtitle">Dos herramientas clave: sincronizar “cuándo coinciden” y repartir “sin sobras”.</p>
 
-<article class="topic">
-  <h2>Máximo común divisor y mínimo común multiplo</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t12.html">← Tema anterior</a>
+          <a class="btn" href="pm1_p1_t14.html">Siguiente tema →</a>
+        </div>
+      </div>
+    </section>
 
+    <section class="topic">
+      <div class="topic-card">
 
+        <h2>1) ¿Qué es el MCD?</h2>
+        <p>
+          El <strong>Máximo Común Divisor</strong> de dos (o más) números es el número más grande que
+          <strong>divide a todos</strong> sin dejar residuo.
+        </p>
 
-</main>
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
-</footer>
+        <div class="mini-note">
+          <strong>Idea rápida:</strong> MCD = “el mayor tamaño de paquete” para repartir sin que sobre.
+        </div>
+
+        <h2 style="margin-top:22px;">2) ¿Qué es el mcm?</h2>
+        <p>
+          El <strong>mínimo común múltiplo</strong> es el múltiplo más pequeño que tienen en común.
+        </p>
+
+        <div class="mini-note">
+          <strong>Idea rápida:</strong> mcm = “el primer momento” en que dos ciclos vuelven a coincidir.
+        </div>
+
+        <h2 style="margin-top:22px;">3) ¿Cómo se calculan? (por factores primos)</h2>
+        <p>
+          Si ya sabes factorizar (tema anterior), esto se vuelve mecánico:
+        </p>
+
+        <div class="grid2">
+          <div class="panel">
+            <h3>Para el MCD</h3>
+            <p>Toma los <strong>primos comunes</strong> con el <strong>menor exponente</strong>.</p>
+            <div class="tag">“lo común, lo mínimo”</div>
+          </div>
+          <div class="panel">
+            <h3>Para el mcm</h3>
+            <p>Toma <strong>todos los primos</strong> con el <strong>mayor exponente</strong>.</p>
+            <div class="tag">“todo, lo máximo”</div>
+          </div>
+        </div>
+
+        <h2 style="margin-top:22px;">4) Ejemplo guiado</h2>
+        <div class="panel">
+          <p style="margin:0 0 10px;">
+            Calcula MCD y mcm de <span class="mono">24</span> y <span class="mono">36</span>:
+          </p>
+          <ul>
+            <li><span class="mono">24 = 2³ × 3</span></li>
+            <li><span class="mono">36 = 2² × 3²</span></li>
+            <li><strong>MCD</strong>: comunes con menor exponente → <span class="mono">2² × 3 = 12</span></li>
+            <li><strong>mcm</strong>: todos con mayor exponente → <span class="mono">2³ × 3² = 72</span></li>
+          </ul>
+        </div>
+
+        <h2 style="margin-top:22px;">5) Herramienta interactiva: MCD y mcm</h2>
+        <p>
+          Escribe dos enteros positivos y te calculo:
+          MCD, mcm, factorizaciones y pasos (incluye el algoritmo de Euclides).
+        </p>
+
+        <div class="tool" aria-label="Calculadora MCD y mcm">
+          <div class="row">
+            <input id="a" class="input" placeholder="a (ej: 24)" aria-label="Número a" />
+            <input id="b" class="input" placeholder="b (ej: 36)" aria-label="Número b" />
+            <button class="btn" id="btnGo" type="button">Calcular</button>
+            <button class="btn" id="btnRnd" type="button">Ejemplo</button>
+            <button class="btn" id="btnClear" type="button">Limpiar</button>
+          </div>
+
+          <div class="feedback" id="fb"></div>
+          <div class="steps" id="steps" style="display:none;"></div>
+        </div>
+
+        <h2 style="margin-top:22px;">6) Regla útil (para comprobar rápido)</h2>
+        <div class="mini-note">
+          Para dos números positivos <span class="mono">a</span> y <span class="mono">b</span>:<br>
+          <strong class="mono">a × b = MCD(a,b) × mcm(a,b)</strong>
+          <br><span class="muted">Sirve como verificación (si no se cumple, algo salió mal).</span>
+        </div>
+
+        <h2 style="margin-top:22px;">7) Mini-quiz</h2>
+        <p>Responde y te digo al instante si estuvo bien:</p>
+        <div class="quiz" id="quizBox" aria-live="polite"></div>
+
+        <!-- ✅ Video (opcional): cambia el ID cuando tengas el video correcto -->
+        <section class="video-block" aria-label="Video del tema">
+          <h2 style="margin-top:22px;">8) Video del subtema</h2>
+
+          <div class="video-grid">
+            <div class="video-frame">
+              <iframe
+                src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+                title="MCD y mcm - JBMATH"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+              </iframe>
+            </div>
+
+            <div class="video-meta">
+              <p class="video-mini">
+                <strong>Objetivo:</strong> Calcular MCD y mcm usando factorización y el algoritmo de Euclides.
+              </p>
+
+              <ul class="video-points">
+                <li>MCD: repartir sin sobras / “lo común con exponente menor”.</li>
+                <li>mcm: sincronizar ciclos / “todo con exponente mayor”.</li>
+                <li>Comprobación: <span class="mono">a·b = MCD·mcm</span>.</li>
+              </ul>
+
+              <div class="video-actions">
+                <a class="btn btn-ghost"
+                   href="https://www.youtube.com/playlist?list=ID_PLAYLIST_PROP1"
+                   target="_blank" rel="noopener">
+                  Ver playlist del Propósito 1
+                </a>
+
+                <a class="btn"
+                   href="https://www.youtube.com/watch?v=BrAs6Tz3ZUE"
+                   target="_blank" rel="noopener">
+                  Ver en YouTube (profundizar)
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="search-wrap">
+          <a class="btn" href="pm1_p1_t14.html">Ir al siguiente tema →</a>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-copy">
+        <p>© 2025 Profe JB — JBMATH</p>
+        <p class="muted">Hecho con café y números (en ese orden).</p>
+      </div>
+
+      <a class="yt-link"
+         href="https://www.youtube.com/@JBMATH"
+         target="_blank"
+         rel="noopener"
+         aria-label="Canal de YouTube JBMATH">
+        <svg class="yt-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+          <path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ✅ Solo lo necesario: JS para MCD/mcm + quiz -->
+  <script>
+    // =========================
+    // Utilidades: parse y MCD (Euclides), mcm
+    // =========================
+    function parsePosInt(s){
+      const t = (s || "").trim();
+      if(!t) return {ok:false, msg:"Escribe ambos números 🙂"};
+      if(!/^\d+$/.test(t)) return {ok:false, msg:"Usa enteros positivos (sin decimales)."};
+      const n = Number(t);
+      if(n < 1) return {ok:false, msg:"Usa números ≥ 1."};
+      if(n > 1000000) return {ok:false, msg:"Usa números ≤ 1,000,000 para que los pasos se vean claros."};
+      return {ok:true, val:n};
+    }
+
+    function gcdSteps(a,b){
+      const steps = [];
+      let x=a, y=b;
+      while(y !== 0){
+        const q = Math.floor(x / y);
+        const r = x % y;
+        steps.push(`${x} = ${y}×${q} + ${r}`);
+        x = y;
+        y = r;
+      }
+      return {gcd:x, steps};
+    }
+
+    function lcm(a,b,g){
+      // evita overflow tonto y mantiene exactitud en enteros
+      return (a / g) * b;
+    }
+
+    function factorize(n){
+      const factors = [];
+      let x = n;
+      while(x % 2 === 0){ factors.push(2); x/=2; }
+      let p=3;
+      while(p*p <= x){
+        while(x % p === 0){ factors.push(p); x/=p; }
+        p+=2;
+      }
+      if(x > 1) factors.push(x);
+      return factors;
+    }
+
+    function toPowersText(factors){
+      const map = new Map();
+      factors.forEach(f => map.set(f, (map.get(f)||0)+1));
+      const parts = [];
+      [...map.entries()].sort((a,b)=>a[0]-b[0]).forEach(([p,e])=>{
+        parts.push(e===1 ? `${p}` : `${p}<sup>${e}</sup>`);
+      });
+      return parts.join(" × ");
+    }
+
+    function run(){
+      const fb = document.getElementById("fb");
+      const stepsBox = document.getElementById("steps");
+      fb.classList.remove("ok","warn");
+      fb.textContent = "";
+      stepsBox.style.display = "none";
+      stepsBox.innerHTML = "";
+
+      const pa = parsePosInt(document.getElementById("a").value);
+      const pb = parsePosInt(document.getElementById("b").value);
+      if(!pa.ok || !pb.ok){
+        fb.classList.add("warn");
+        fb.textContent = pa.ok ? pb.msg : pa.msg;
+        return;
+      }
+
+      const a = pa.val, b = pb.val;
+      const {gcd, steps} = gcdSteps(a,b);
+      const L = lcm(a,b,gcd);
+
+      const fa = factorize(a);
+      const fb2 = factorize(b);
+
+      fb.classList.add("ok");
+      fb.innerHTML = `
+        ✅ Para <strong>${a}</strong> y <strong>${b}</strong>:<br>
+        • <strong>MCD</strong> = <span class="mono">${gcd}</span><br>
+        • <strong>mcm</strong> = <span class="mono">${L}</span><br><br>
+        <span class="muted">Comprobación:</span>
+        <span class="mono">${a}×${b} = ${a*b}</span> y
+        <span class="mono">${gcd}×${L} = ${gcd*L}</span>
+      `;
+
+      stepsBox.style.display = "block";
+      stepsBox.innerHTML = `
+        <strong>Factorización (para ver “lo común” y “lo máximo”):</strong>
+        <ul style="margin:10px 0 10px; padding-left:18px;">
+          <li><span class="mono">${a} = ${toPowersText(fa)}</span></li>
+          <li><span class="mono">${b} = ${toPowersText(fb2)}</span></li>
+        </ul>
+
+        <strong>Algoritmo de Euclides (pasos del MCD):</strong>
+        <ol>
+          ${steps.map(s=>`<li><span class="mono">${s}</span></li>`).join("")}
+        </ol>
+      `;
+    }
+
+    function rnd(){
+      const pairs = [
+        [24,36],[18,30],[12,45],[40,60],[84,120],[90,126],[72,96],[105,140]
+      ];
+      const [a,b] = pairs[Math.floor(Math.random()*pairs.length)];
+      document.getElementById("a").value = String(a);
+      document.getElementById("b").value = String(b);
+      run();
+    }
+
+    function clearAll(){
+      document.getElementById("a").value = "";
+      document.getElementById("b").value = "";
+      const fb = document.getElementById("fb");
+      const stepsBox = document.getElementById("steps");
+      fb.classList.remove("ok","warn");
+      fb.textContent = "";
+      stepsBox.style.display = "none";
+      stepsBox.innerHTML = "";
+    }
+
+    document.getElementById("btnGo").addEventListener("click", run);
+    document.getElementById("btnRnd").addEventListener("click", rnd);
+    document.getElementById("btnClear").addEventListener("click", clearAll);
+
+    // =========================
+    // Mini-quiz
+    // =========================
+    const quizData = [
+      {
+        q: "¿Qué describe mejor al MCD?",
+        opts: [
+          {t:"El mayor número que divide a ambos sin residuo", ok:true, why:"Correcto: divisor común máximo."},
+          {t:"El menor múltiplo que comparten", ok:false, why:"Eso es el mcm."}
+        ]
+      },
+      {
+        q: "¿Qué describe mejor al mcm?",
+        opts: [
+          {t:"El menor múltiplo común", ok:true, why:"Correcto: primer múltiplo donde coinciden."},
+          {t:"El mayor divisor común", ok:false, why:"Eso es el MCD."}
+        ]
+      },
+      {
+        q: "Si MCD(12, 18)=6, entonces 6 divide a:",
+        opts: [
+          {t:"12 y 18", ok:true, why:"Correcto: divide a ambos."},
+          {t:"Solo a 12", ok:false, why:"Debe dividir a los dos."}
+        ]
+      },
+      {
+        q: "Regla de verificación correcta:",
+        opts: [
+          {t:"a·b = MCD(a,b)·mcm(a,b)", ok:true, why:"Correcto (para a,b positivos)."},
+          {t:"a+b = MCD(a,b)+mcm(a,b)", ok:false, why:"No existe esa regla general."}
+        ]
+      }
+    ];
+
+    let score = 0, done = 0;
+
+    function renderQuiz(){
+      const box = document.getElementById("quizBox");
+      score = 0; done = 0;
+
+      box.innerHTML = `
+        <p class="qtitle">Mini-quiz (4 preguntas)</p>
+        <div id="quizItems"></div>
+        <div class="score-line">
+          <span class="pill" id="pillScore">Puntaje: 0/4</span>
+          <button class="btn" id="btnResetQuiz" type="button">Reiniciar</button>
+        </div>
+        <div class="feedback" id="quizGlobal"></div>
+      `;
+
+      const items = document.getElementById("quizItems");
+
+      quizData.forEach((item, i) => {
+        const el = document.createElement("div");
+        el.className = "quiz";
+        el.style.marginTop = "12px";
+        el.innerHTML = `
+          <p class="qtext"><strong>${i+1}.</strong> ${item.q}</p>
+          <div class="opts">
+            ${item.opts.map((o, j)=> `<button class="btn" type="button" data-i="${i}" data-j="${j}">${o.t}</button>`).join("")}
+          </div>
+          <div class="feedback" id="fbq-${i}"></div>
+        `;
+        items.appendChild(el);
+      });
+
+      items.querySelectorAll("button.btn").forEach(btn=>{
+        btn.addEventListener("click", onAnswer);
+      });
+
+      document.getElementById("btnResetQuiz").addEventListener("click", renderQuiz);
+    }
+
+    function onAnswer(e){
+      const btn = e.currentTarget;
+      const i = Number(btn.dataset.i);
+      const j = Number(btn.dataset.j);
+      const item = quizData[i];
+      const opt = item.opts[j];
+
+      const fb = document.getElementById(`fbq-${i}`);
+      if (fb.dataset.done === "1") return;
+      fb.dataset.done = "1";
+
+      const wrap = btn.closest(".quiz");
+      wrap.querySelectorAll(".opts .btn").forEach(b=>{
+        b.disabled = true;
+        b.classList.remove("btn-ok","btn-bad");
+      });
+
+      if(opt.ok){
+        btn.classList.add("btn-ok");
+        score++;
+        fb.innerHTML = `✅ <strong>Bien.</strong> ${opt.why}`;
+      }else{
+        btn.classList.add("btn-bad");
+        const correctIndex = item.opts.findIndex(x=>x.ok);
+        wrap.querySelectorAll(".opts .btn")[correctIndex].classList.add("btn-ok");
+        fb.innerHTML = `❌ <strong>Casi.</strong> ${opt.why}`;
+      }
+
+      done++;
+      document.getElementById("pillScore").textContent = `Puntaje: ${score}/4`;
+
+      if(done === quizData.length){
+        const g = document.getElementById("quizGlobal");
+        if(score === 4) g.textContent = "Excelente: ya sincronizas ciclos y repartes sin sobras 😄";
+        else if(score >= 3) g.textContent = "Muy bien. Ya casi te sale automático.";
+        else g.textContent = "Repite con pares de números: factoriza y aplica (comunes mínimos / todos máximos).";
+      }
+    }
+
+    renderQuiz();
+  </script>
 </body>
 </html>
