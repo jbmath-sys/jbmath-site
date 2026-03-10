@@ -1,36 +1,363 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Unidad y números racionales como fracciones (estructura) | JBMATH</title>
-  <link rel="stylesheet" href="../assets/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Unidad y números racionales como fracciones | JBMATH</title>
+<link rel="stylesheet" href="../assets/style.css" />
 
-  <!-- ✅ Solo lo necesario: estilos EXTRA (no toca lo demás) -->
-  <style>
-    /* ===== EXTRA UI (solo esta página) ===== */
-    .mini-note{
-      margin-top:12px;
-      padding:12px;
-      border-radius:16px;
-      border:1px solid rgba(124,58,237,.35);
-      background:rgba(124,58,237,.10);
-      color:rgba(255,255,255,.86);
-    }
-    .mini-note strong{ color:rgba(255,255,255,.92); }
+<style>
 
-    .grid2{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-      margin-top:12px;
-    }
-    @media (max-width: 860px){
-      .grid2{ grid-template-columns: 1fr; }
-    }
+.mini-note{
+margin-top:12px;
+padding:12px;
+border-radius:16px;
+border:1px solid rgba(124,58,237,.35);
+background:rgba(124,58,237,.10);
+color:rgba(255,255,255,.86);
+}
 
-    .panel{
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.05);
-      border-radius:16px;
-      padding:
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:14px;
+}
+
+@media (max-width:860px){
+.grid2{grid-template-columns:1fr;}
+}
+
+.panel{
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+border-radius:16px;
+padding:14px;
+}
+
+.mono{
+font-family:ui-monospace,monospace;
+}
+
+.tool{
+margin-top:14px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+border-radius:16px;
+padding:14px;
+}
+
+.input{
+padding:10px 12px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.14);
+background:rgba(255,255,255,.06);
+color:rgba(255,255,255,.9);
+outline:none;
+width:120px;
+}
+
+.row{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+.feedback{
+margin-top:10px;
+color:var(--muted);
+}
+
+.ok{color:#4ade80;}
+.warn{color:#fbbf24;}
+
+.quiz{
+margin-top:16px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+border-radius:16px;
+padding:14px;
+}
+
+.opts{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:8px;
+}
+
+.btn-ok{background:rgba(34,197,94,.2);}
+.btn-bad{background:rgba(239,68,68,.2);}
+
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+<div class="header-inner container">
+
+<a class="brand" href="../index.html">
+<img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+<div class="brand-text">
+<span class="brand-name">JBMATH</span>
+<span class="brand-tagline">Plataforma educativa</span>
+</div>
+</a>
+
+<nav class="site-nav">
+<a class="nav-link" href="../index.html">Inicio</a>
+<a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+<a class="nav-link" href="../contacto.html">Contacto</a>
+</nav>
+
+</div>
+</header>
+
+<main class="container">
+
+<nav class="breadcrumbs">
+<a href="../index.html">Inicio</a>
+<span class="sep">›</span>
+<a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+<span class="sep">›</span>
+<span>Propósito 1</span>
+<span class="sep">›</span>
+<strong>Números racionales</strong>
+</nav>
+
+<section class="hero">
+<div class="hero-card">
+
+<p class="badge">PM I · Propósito 1</p>
+<h1 class="title">Unidad y números racionales como fracciones</h1>
+
+<p class="subtitle">
+Comprender cómo una unidad puede dividirse en partes iguales para representar números racionales.
+</p>
+
+<div class="search-wrap">
+<a class="btn" href="pm1_p1_t14.html">← Tema anterior</a>
+<a class="btn" href="pm1_p1_t16.html">Siguiente tema →</a>
+</div>
+
+</div>
+</section>
+
+
+<section class="topic">
+<div class="topic-card">
+
+<h2>1) ¿Qué es una unidad?</h2>
+
+<p>
+Una <strong>unidad</strong> es una cantidad completa que tomamos como referencia para medir o comparar.
+</p>
+
+<div class="mini-note">
+Ejemplos de unidad:
+<ul>
+<li>Una pizza completa</li>
+<li>Un metro</li>
+<li>Un litro</li>
+<li>Un pastel entero</li>
+</ul>
+</div>
+
+<p>
+Cuando dividimos una unidad en partes iguales, cada parte puede representarse con una <strong>fracción</strong>.
+</p>
+
+<h2>2) ¿Qué es un número racional?</h2>
+
+<p>
+Un <strong>número racional</strong> es cualquier número que puede escribirse como una fracción.
+</p>
+
+<div class="mini-note">
+Forma general:
+<span class="mono">a / b</span>
+<br><br>
+
+donde:
+<ul>
+<li><strong>a</strong> = numerador</li>
+<li><strong>b</strong> = denominador</li>
+<li><strong>b ≠ 0</strong></li>
+</ul>
+</div>
+
+<h2>3) Estructura de una fracción</h2>
+
+<div class="grid2">
+
+<div class="panel">
+<h3>Numerador</h3>
+<p>
+Indica cuántas partes se toman de la unidad.
+</p>
+
+<p class="mono">
+Ejemplo: 3/4 → se toman 3 partes.
+</p>
+</div>
+
+<div class="panel">
+<h3>Denominador</h3>
+<p>
+Indica en cuántas partes iguales se divide la unidad.
+</p>
+
+<p class="mono">
+Ejemplo: 3/4 → la unidad se divide en 4 partes.
+</p>
+</div>
+
+</div>
+
+<h2>4) Ejemplos de números racionales</h2>
+
+<div class="panel">
+
+<ul>
+<li class="mono">1/2</li>
+<li class="mono">3/4</li>
+<li class="mono">5/3</li>
+<li class="mono">7/10</li>
+</ul>
+
+<p>
+Todos estos números representan partes de una unidad.
+</p>
+
+</div>
+
+<h2>5) Interpretación visual</h2>
+
+<div class="mini-note">
+
+Si una pizza se divide en 8 partes:
+
+<span class="mono">3/8</span>
+
+significa que tomamos 3 de esas 8 partes.
+
+</div>
+
+<h2>6) Herramienta interactiva</h2>
+
+<p>Escribe un numerador y denominador para interpretar la fracción.</p>
+
+<div class="tool">
+
+<div class="row">
+
+<input id="num" class="input" placeholder="numerador">
+<input id="den" class="input" placeholder="denominador">
+
+<button class="btn" onclick="interpretar()">Interpretar</button>
+
+</div>
+
+<div class="feedback" id="resultado"></div>
+
+</div>
+
+<h2 style="margin-top:22px;">7) Mini-quiz</h2>
+
+<div class="quiz" id="quizBox"></div>
+
+
+<section class="video-block">
+
+<h2>8) Video del subtema</h2>
+
+<div class="video-grid">
+
+<div class="video-frame">
+<iframe
+src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+title="Números racionales"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="video-meta">
+
+<p class="video-mini">
+<strong>Objetivo:</strong>
+Comprender cómo se representan partes de una unidad mediante fracciones.
+</p>
+
+<ul class="video-points">
+<li>Concepto de unidad</li>
+<li>Estructura de una fracción</li>
+<li>Números racionales</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<div class="search-wrap">
+<a class="btn" href="pm1_p1_t16.html">Ir al siguiente tema →</a>
+</div>
+
+</div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+<div class="container footer-inner">
+
+<div class="footer-copy">
+<p>© 2025 Profe JB — JBMATH</p>
+<p class="muted">Hecho con café y números.</p>
+</div>
+
+<a class="yt-link"
+href="https://www.youtube.com/@JBMATH"
+target="_blank">
+
+<svg class="yt-icon" viewBox="0 0 24 24">
+<path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+<path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+</svg>
+
+</a>
+
+</div>
+</footer>
+
+<script>
+
+function interpretar(){
+
+let n=document.getElementById("num").value
+let d=document.getElementById("den").value
+
+let res=document.getElementById("resultado")
+
+if(n==""||d==""){
+res.innerHTML="Escribe numerador y denominador"
+return
+}
+
+if(d==0){
+res.innerHTML="El denominador no puede ser 0"
+return
+}
+
+res.innerHTML="La fracción <b>"+n+"/"+d+"</b> representa "+n+" partes de una unidad dividida en "+d+" partes iguales."
+
+}
+
+</script>
+
+</body>
+</html>
