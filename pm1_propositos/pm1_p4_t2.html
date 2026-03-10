@@ -1,55 +1,402 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PM I — Proposito de aprendizaje 4 ((Numeros racionales y sus operaciones)) | JBMATH</title>
-  <link rel="stylesheet" href="assets/style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Equivalencias entre fracciones | JBMATH</title>
+<link rel="stylesheet" href="../assets/style.css" />
+
+<style>
+
+.mini-note{
+margin-top:12px;
+padding:12px;
+border-radius:16px;
+border:1px solid rgba(124,58,237,.35);
+background:rgba(124,58,237,.10);
+color:rgba(255,255,255,.86);
+}
+
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:14px;
+}
+
+@media (max-width:860px){
+.grid2{grid-template-columns:1fr;}
+}
+
+.panel{
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+border-radius:16px;
+padding:14px;
+}
+
+.mono{
+font-family:ui-monospace,monospace;
+}
+
+.tool{
+margin-top:14px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+border-radius:16px;
+padding:14px;
+}
+
+.input{
+padding:10px 12px;
+border-radius:14px;
+border:1px solid rgba(255,255,255,.14);
+background:rgba(255,255,255,.06);
+color:rgba(255,255,255,.9);
+outline:none;
+width:120px;
+}
+
+.row{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:10px;
+}
+
+.feedback{
+margin-top:10px;
+color:var(--muted);
+}
+
+.ok{color:#4ade80;}
+.warn{color:#fbbf24;}
+
+.quiz{
+margin-top:16px;
+border:1px solid var(--line);
+background:rgba(255,255,255,.05);
+border-radius:16px;
+padding:14px;
+}
+
+.opts{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top:8px;
+}
+
+.btn-ok{background:rgba(34,197,94,.2);}
+.btn-bad{background:rgba(239,68,68,.2);}
+
+</style>
 </head>
+
 <body>
+
 <header class="site-header">
-  <div class="container">
-    <h1 class="logo"><a href="index.html">JBMATH</a></h1>
-    <nav class="nav">
-      <a href="pm1_progresiones.html">PM I</a>
-      <a href="pm2_progresiones.html">PM II</a>
-      <a href="pm3_progresiones.html">PM III</a>
-      <a href="pm4_progresiones.html">PM IV</a>
-      <a href="pm5_progresiones.html">PM V</a>
-      <a href="pm6_progresiones.html">PM VI</a>
-      <a href="recursos.html">Recursos</a>
-      <a href="sobre_mi_contacto.html">Contacto</a>
-    </nav>
-  </div>
+<div class="header-inner container">
+
+<a class="brand" href="../index.html">
+<img class="brand-logo" src="../assets/imagenes/logo.png" alt="Logo JBMATH" />
+<div class="brand-text">
+<span class="brand-name">JBMATH</span>
+<span class="brand-tagline">Plataforma educativa</span>
+</div>
+</a>
+
+<nav class="site-nav">
+<a class="nav-link" href="../index.html">Inicio</a>
+<a class="nav-link" href="../pm1_progresiones.html">PM I</a>
+<a class="nav-link" href="../contacto.html">Contacto</a>
+</nav>
+
+</div>
 </header>
-<main class="container content">
 
-<h1>PM I — Progresión 4 (Numeros racionales y sus operaciones)</h1>
+<main class="container">
 
-<article class="topic">
-  <h2>Equivalencias entre fracciones y entre números enteros y fracciones</h2>
-  <p class="intro">
-    <!-- Escribe aquí una explicación breve del tema ANTES del video. -->
-  </p>
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Proposiciones y conectivos" frameborder="0" allowfullscreen></iframe>
-  </div>
-  <details class="extra">
-    <summary>Material complementario (opcional)</summary>
-    <ul>
-      <li><a href="#" target="_blank">Guía PDF</a></li>
-      <li><a href="#" target="_blank">Ejercicios</a></li>
-    </ul>
-  </details>
-</article>
+<nav class="breadcrumbs">
+<a href="../index.html">Inicio</a>
+<span class="sep">›</span>
+<a href="../pm1_progresiones.html">Pensamiento Matemático I</a>
+<span class="sep">›</span>
+<span>Propósito 1</span>
+<span class="sep">›</span>
+<strong>Equivalencias de fracciones</strong>
+</nav>
+
+<section class="hero">
+<div class="hero-card">
+
+<p class="badge">PM I · Propósito 1</p>
+
+<h1 class="title">Equivalencias entre fracciones</h1>
+
+<p class="subtitle">
+Comprender cuándo dos fracciones representan la misma cantidad.
+</p>
+
+<div class="search-wrap">
+<a class="btn" href="pm1_p1_t15.html">← Tema anterior</a>
+<a class="btn" href="pm1_p1_t17.html">Siguiente tema →</a>
+</div>
+
+</div>
+</section>
 
 
+<section class="topic">
+<div class="topic-card">
+
+<h2>1) ¿Qué son fracciones equivalentes?</h2>
+
+<p>
+Dos fracciones son <strong>equivalentes</strong> cuando representan la misma cantidad aunque
+tengan numerador y denominador diferentes.
+</p>
+
+<div class="mini-note">
+
+Ejemplo:
+
+<p class="mono">
+1/2 = 2/4 = 3/6
+</p>
+
+Todas representan la misma cantidad: la mitad.
+
+</div>
+
+
+<h2>2) ¿Cómo obtener fracciones equivalentes?</h2>
+
+<p>
+Se multiplican o dividen el numerador y el denominador por el mismo número.
+</p>
+
+<div class="grid2">
+
+<div class="panel">
+
+<h3>Multiplicando</h3>
+
+<p class="mono">
+
+1/3 × 2/2 = 2/6
+
+</p>
+
+<p>
+La fracción no cambia su valor.
+</p>
+
+</div>
+
+<div class="panel">
+
+<h3>Dividiendo</h3>
+
+<p class="mono">
+
+6/9 ÷ 3/3 = 2/3
+
+</p>
+
+<p>
+Se obtiene una fracción equivalente más simple.
+</p>
+
+</div>
+
+</div>
+
+
+<h2>3) Enteros como fracciones</h2>
+
+<p>
+Cualquier número entero puede escribirse como una fracción.
+</p>
+
+<div class="mini-note">
+
+Ejemplos:
+
+<p class="mono">
+5 = 5/1  
+8 = 8/1  
+12 = 12/1
+</p>
+
+</div>
+
+<p>
+Esto es útil para realizar operaciones con fracciones.
+</p>
+
+
+<h2>4) Ejemplos de equivalencia</h2>
+
+<div class="panel">
+
+<ul>
+<li class="mono">2/4 = 1/2</li>
+<li class="mono">4/8 = 1/2</li>
+<li class="mono">6/3 = 2</li>
+<li class="mono">10/5 = 2</li>
+</ul>
+
+</div>
+
+
+<h2>5) Herramienta interactiva</h2>
+
+<p>Introduce una fracción y genera una equivalente.</p>
+
+<div class="tool">
+
+<div class="row">
+
+<input id="num" class="input" placeholder="numerador">
+<input id="den" class="input" placeholder="denominador">
+
+<button class="btn" onclick="equivalente()">Generar</button>
+
+</div>
+
+<div class="feedback" id="resultado"></div>
+
+</div>
+
+
+<h2 style="margin-top:22px;">6) Mini-quiz</h2>
+
+<div class="quiz" id="quizBox">
+
+<p><strong>¿Cuál es equivalente a 1/2?</strong></p>
+
+<div class="opts">
+
+<button class="btn" onclick="quiz(this,true)">2/4</button>
+<button class="btn" onclick="quiz(this,false)">3/5</button>
+<button class="btn" onclick="quiz(this,false)">4/7</button>
+
+</div>
+
+</div>
+
+
+<section class="video-block">
+
+<h2>7) Video del subtema</h2>
+
+<div class="video-grid">
+
+<div class="video-frame">
+
+<iframe
+src="https://www.youtube.com/embed/BrAs6Tz3ZUE"
+title="Fracciones equivalentes"
+frameborder="0"
+allowfullscreen>
+</iframe>
+
+</div>
+
+<div class="video-meta">
+
+<p class="video-mini">
+<strong>Objetivo:</strong>
+Identificar cuándo dos fracciones representan la misma cantidad.
+</p>
+
+<ul class="video-points">
+<li>Concepto de equivalencia</li>
+<li>Multiplicación y división por el mismo número</li>
+<li>Enteros como fracciones</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+
+<div class="search-wrap">
+<a class="btn" href="pm1_p1_t17.html">Ir al siguiente tema →</a>
+</div>
+
+</div>
+</section>
 
 </main>
+
+
 <footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2025 Profe JB — <a href="https://www.youtube.com/@JBMATH" target="_blank" rel="noopener">Canal JBMATH</a></p>
-  </div>
+<div class="container footer-inner">
+
+<div class="footer-copy">
+<p>© 2025 Profe JB — JBMATH</p>
+<p class="muted">Hecho con café y números.</p>
+</div>
+
+<a class="yt-link"
+href="https://www.youtube.com/@JBMATH"
+target="_blank">
+
+<svg class="yt-icon" viewBox="0 0 24 24">
+<path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.7 4.7 12 4.7 12 4.7s-5.7 0-7.5.4A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.8.4 7.5.4 7.5.4s5.7 0 7.5-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8z"/>
+<path d="M10 15.5v-7l6 3.5-6 3.5z" fill="currentColor"/>
+</svg>
+
+</a>
+
+</div>
 </footer>
+
+
+<script>
+
+function equivalente(){
+
+let n=document.getElementById("num").value
+let d=document.getElementById("den").value
+let res=document.getElementById("resultado")
+
+if(n==""||d==""){
+res.innerHTML="Escribe numerador y denominador"
+return
+}
+
+if(d==0){
+res.innerHTML="El denominador no puede ser 0"
+return
+}
+
+let n2=n*2
+let d2=d*2
+
+res.innerHTML="Una fracción equivalente es: <b>"+n2+"/"+d2+"</b>"
+
+}
+
+function quiz(btn,correct){
+
+if(correct){
+
+btn.classList.add("btn-ok")
+
+}else{
+
+btn.classList.add("btn-bad")
+
+}
+
+}
+
+</script>
+
 </body>
 </html>
